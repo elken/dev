@@ -62,3 +62,12 @@ if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localS
     themeDarkIcon.classList.remove('hidden');
     togglePrismTheme(false)
 }
+// temp hack
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then(function(registrations) {
+      for(let registration of registrations) {
+        registration.unregister();
+      }
+    });
+}
