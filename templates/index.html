@@ -1,0 +1,36 @@
+{% for post in posts %}
+<article
+    class="mx-auto rounded shadow text-lg my-3 prose prose-nord-3 lg:prose-lg prose-a:no-underline prose-headings:my-1 prose-p:mt-1 prose-p:mb-1 dark:prose-invert dark:bg-nord-2 dark:hover:bg-nord-3">
+    {% if post.image %}
+    <img src="{{ post.image }}" alt="{{ post.image-alt }}" class="rounded-t h-32 w-full mb-0 object-cover object-center">
+    {% endif %}
+
+    <div class="px-4 pb-1">
+        <h2><a class="content-link" href="{{post.post-link}}">{{post.title}}</a></h2>
+        {% if post.description %}
+        <h5 class="text-nord-1 dark:text-nord-4 text-lg font-semibold">{{ post.description }}</h5>
+        {% endif %}
+        <span class="flex flex-col sm:flex-row gap-3 items-center">
+            <span class="select-none">
+                <i class="fas fa-calendar-alt"></i>
+                {{ post.date }}
+            </span>
+
+            {% if post.tags %}
+            {% for tag in post.tags %}
+            <a class="bg-nord-9 !text-nord-6 text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
+                href="tags/{{tag|escape-tag}}{{page-suffix}}">
+                <svg xmlns=" http://www.w3.org/2000/svg" class="inline fill-nord-10" height="1em" viewBox="0 0 448 512">
+                    <path
+                        d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                </svg>
+                {{tag}}
+            </a>
+            {% endfor %}
+            {% endif %}
+        </span>
+
+        {{post.body | safe}}
+    </div>
+</article>
+{% endfor %}

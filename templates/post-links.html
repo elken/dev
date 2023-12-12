@@ -1,0 +1,11 @@
+<div class="max-w-2xl mx-auto p-4 bg-nord-6 text-nord-0 dark:bg-nord-1 dark:text-nord-5">
+    <h2 class="text-5xl font-bold mb-4 text-nord-9 dark:text-nord-8">{{ title }}</h2>
+    <ul class="divide-y divide-nord-3 dark:divide-nord-4">
+    {% for post-link in post-links %}
+        <li class="py-4 flex gap-5 items-center">
+            <a href="{{post-link.url}}" class="text-lg !text-nord-10 hover:text-opacity-75 !dark:text-nord-7 dark:hover:text-opacity-75">{{ post-link.title }}</a>
+            <span class="text-sm text-nord-2 dark:text-nord-4">{{ post-link.date }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

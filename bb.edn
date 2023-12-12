@@ -1,0 +1,14 @@
+{:deps {io.github.borkdude/quickblog {:local/root "../../quickblog"}
+        ;; io.github.borkdude/quickblog {:git/sha "3a4106fcb0e590747012771f01b2643b3f092dad"}
+        }
+ :tasks
+ {:requires ([quickblog.cli :as cli])
+  :init (def opts {:blog-title "lkn's site"
+                   :blog-description "My pointless blog"
+                   :blog-author "Ellis Kenyő"
+                   :blog-root "https://elken.dev"
+                   :about-link "/about.html"
+                   :discuss-link "https://github.com/elken/dev/discussions/categories/comments"
+                   :favicon true})
+  quickblog {:doc "Start blogging quickly! Run `bb quickblog help` for details."
+             :task (cli/dispatch opts)}}}

@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    html {
+        scroll-behaviour: smooth;
+    }
+
+    /* Burger menu */
+    input#nav-toggle:checked~label#show-button {
+        display: none;
+    }
+
+    input#nav-toggle:checked~label#hide-button {
+        display: flex;
+    }
+
+    input#nav-toggle:checked~#nav-menu {
+        display: block;
+    }
+
+    /* Arrow buttons on posts index */
+    .content-link {
+        @apply inline-flex flex-row items-center justify-center;
+    }
+
+    .content-link::after {
+        @apply ml-3 text-5xl;
+        content: '➙';
+    }
+
+    /* Anchor headings */
+    h1, h2, h3, h4, h5 {
+        @apply relative cursor-pointer;
+    }
+
+    h1[id]:hover::before,
+    h2[id]:hover::before,
+    h3[id]:hover::before,
+    h4[id]:hover::before,
+    h5[id]:hover::before {
+        @apply absolute cursor-pointer text-lg;
+        content: '🔗';
+        left: -25px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: transparent;
+        text-shadow: 0 0 0 theme('colors.nord.6');
+    }
+
+
+    /* Figures */
+    figure {
+        @apply m-2 border-2 border-nord-10 dark:border-nord-7 rounded-lg overflow-hidden shadow-lg bg-nord-6 dark:bg-nord-2 transition-all;
+
+        img {
+            @apply px-2 pt-2;
+        }
+
+        figcaption {
+            @apply !mt-0 text-nord-3 dark:text-nord-4 text-center text-sm italic font-medium;
+        }
+    }
+
+    a {
+        @apply text-nord-9 dark:text-nord-8 hover:text-nord-11 dark:hover:text-nord-12;
+    }
+
+    .warning {
+        @apply relative bg-nord-13 text-nord-0 p-4 border-l-4 border-b-4 border-nord-12 rounded-md shadow-md pt-8;
+    }
+
+    .warning::before {
+        @apply absolute transform -translate-y-1/2 -translate-x-full ml-2 text-lg text-nord-0 font-bold text-2xl;
+        content: '⚠️ Warning';
+        top: 18px;
+        left: 140px;
+    }
+
+    .image-title {
+        @apply text-nord-6;
+        mix-blend-mode: difference;
+        filter: drop-shadow(0.05em 0.05em blue)
+    }
+}
