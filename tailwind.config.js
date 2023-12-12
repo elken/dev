@@ -8,10 +8,10 @@ module.exports = {
         'page': 'auto 1fr auto'
       },
       height: {
-        'responsive-screen': '100lvh'
+        'responsive-screen': '100svh'
       },
       spacing: {
-        'responsive-screen': '100lvh'
+        'responsive-screen': '100svh'
       },
       colors: {
         transparent: 'transparent',
