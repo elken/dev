@@ -24,13 +24,3 @@ window.onload = () => {
     scrollToElement(targetElement);
   }
 };
-
-const sidebar = document.getElementById("post");
-
-if (localStorage.getItem("post-scroll") !== null) {
-  sidebar.scrollTop = parseInt(localStorage.getItem("post-scroll"), 10);
-}
-
-window.addEventListener("beforeunload", () => {
-  localStorage.setItem("post-scroll", sidebar.scrollTop);
-});
