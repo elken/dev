@@ -1,0 +1,48 @@
+[;; Blog post
+ {:db/ident :blog-post/author
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one}
+
+ {:db/ident :blog-post/tags
+  :db/valueType :db.type/keyword
+  :db/cardinality :db.cardinality/many}
+
+ {:db/ident :blog-post/created-at
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ {:db/ident :blog-post/edited-at
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ {:db/ident :blog-post/preview
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; About
+ {:db/ident :about/github
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ {:db/ident :about/gitlab
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ {:db/ident :about/linkedin
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; Person
+ {:db/ident :person/id
+  :db/valueType :db.type/keyword
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+
+ {:db/ident :person/full-name
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; Tags
+ {:db/ident :tag-page/tag
+  :db/valueType :db.type/keyword
+  :db/cardinality :db.cardinality/one}]

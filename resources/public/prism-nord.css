@@ -1,0 +1,393 @@
+:root {
+    --nord0: #2E3440;
+    --nord0-rgb: 46, 52, 64;
+    --nord1: #3B4252;
+    --nord1-rgb: 59, 66, 82;
+    --nord2: #434C5E;
+    --nord2-rgb: 67, 76, 94;
+    --nord3: #4C566A;
+    --nord3-rgb: 76, 86, 106;
+    --nord4: #D8DEE9;
+    --nord4-rgb: 216, 222, 233;
+    --nord5: #E5E9F0;
+    --nord5-rgb: 229, 233, 240;
+    --nord6: #ECEFF4;
+    --nord6-rgb: 236, 239, 244;
+    --nord7: #8FBCBB;
+    --nord7-rgb: 143, 188, 187;
+    --nord8: #88C0D0;
+    --nord8-rgb: 136, 192, 208;
+    --nord9: #81A1C1;
+    --nord9-rgb: 129, 161, 193;
+    --nord10: #5E81AC;
+    --nord10-rgb: 94, 129, 172;
+    --nord11: #BF616A;
+    --nord11-rgb: 191, 97, 106;
+    --nord12: #D08770;
+    --nord12-rgb: 208, 135, 112;
+    --nord13: #EBCB8B;
+    --nord13-rgb: 235, 203, 139;
+    --nord14: #A3BE8C;
+    --nord14-rgb: 163, 190, 140;
+    --nord15: #B48EAD;
+    --nord15-rgb: 180, 142, 173;
+    --comment-dark: #6f7787;
+    --comment-dark-rgb: 111, 119, 135;
+    --selected-light: #B8C5DB;
+    --selected-light-rgb: 184, 197, 219;
+    --comment-light: #8b94a5;
+    --comment-light-rgb: 139, 148, 165;
+}
+
+/* Light */
+
+/* Inline blocks */
+p code {
+    background-color: var(--nord5);
+    color: var(--nord2);
+    padding: 0.2em 0.4em;
+    margin: 0 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    box-shadow: 4px 4px 6px rgba(var(--nord1-rgb), 0.12);
+}
+
+code[class*=language-],
+pre[class*=language-],
+p code {
+    color: var(--nord2);
+    background: var(--nord5);
+}
+
+code[class*=language-] ::selection,
+code[class*=language-]::selection,
+code[class*=language-] ::-moz-selection,
+code[class*=language-]::-moz-selection,
+pre[class*=language-] ::selection,
+pre[class*=language-]::selection,
+pre[class*=language-] ::-moz-selection,
+pre[class*=language-]::-moz-selection {
+    background: var(--selected-light);
+}
+
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.url,
+.token.cdata,
+.token.comment,
+.token.doctype,
+.token.prolog {
+    color: var(--comment-light);
+    background: none;
+}
+.token.operator,
+.token.punctuation {
+    color: var(--nord2);
+    background: none;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.boolean,
+.token.constant,
+.token.deleted,
+.token.property,
+.token.symbol,
+.token.tag {
+    color: var(--nord10);
+}
+
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.inserted,
+.token.selector {
+    color: var(--nord7);
+}
+
+.token.string,
+.token.interpolation .token.interpolation-punctuation {
+    color: var(--nord14) !important;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.function {
+    color: var(--nord9);
+}
+
+.token.important,
+.token.regex,
+.token.variable {
+    color: var(--nord13);
+}
+
+.token.number {
+    color: var(--nord15);
+    font-weight: 700;
+}
+
+.line-highlight,
+pre[id].linkable-line-numbers span.line-numbers-rows > span:hover::before {
+    background: rgba(var(--nord7-rgb), 0.2);
+}
+
+pre[id].linkable-line-numbers span.line-numbers-rows > span::before {
+    color: var(--comment-dark);
+    font-weight: 600;
+}
+
+div.code-toolbar>.toolbar>.toolbar-item>a,
+div.code-toolbar>.toolbar>.toolbar-item>button,
+div.code-toolbar>.toolbar>.toolbar-item>span{
+    color: var(--nord6);
+    background: var(--nord2);
+}
+
+.command-line.line-numbers .line-numbers-rows > span::before{
+    display: none;
+}
+
+.command-line-prompt > span[data-user]::before {
+    font-weight: 700;
+    background: linear-gradient(to right,
+        var(--nord10) 5%, var(--nord10) 85%,
+        var(--nord2) 85%);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.command-line-prompt > span[data-user=root]::before {
+    font-weight: 700;
+    background: linear-gradient(to right,
+        var(--nord11) 5%, var(--nord11) 85%,
+        var(--nord2) 85%);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.rainbow-braces .token.punctuation {
+    opacity: 1;
+}
+
+.rainbow-braces .token.punctuation.brace-level-1,
+.rainbow-braces .token.punctuation.brace-level-10 {
+    color: var(--nord9);
+}
+
+.rainbow-braces .token.punctuation.brace-level-2,
+.rainbow-braces .token.punctuation.brace-level-11 {
+    color: var(--nord15);
+}
+
+.rainbow-braces .token.punctuation.brace-level-3,
+.rainbow-braces .token.punctuation.brace-level-12 {
+    color: var(--nord14);
+}
+
+.rainbow-braces .token.punctuation.brace-level-4,
+.rainbow-braces .token.punctuation.brace-level-9 {
+    color: var(--nord10);
+    filter: brightness(98%) contrast(101%) hue-rotate(1deg);
+}
+
+.rainbow-braces .token.punctuation.brace-level-5 {
+    color: var(--nord7);
+}
+
+.rainbow-braces .token.punctuation.brace-level-6 {
+    color: var(--nord9);
+}
+
+.rainbow-braces .token.punctuation.brace-level-7 {
+    color: var(--nord15);
+}
+
+.rainbow-braces .token.punctuation.brace-level-8 {
+    color: var(--nord15);
+}
+
+.diff-highlight code .token.deleted:not(.prefix) {
+    background-color: rgba(var(--nord11-rgb), 0.4);
+}
+
+.diff-highlight code .token.inserted:not(.prefix) {
+    background-color: rgba(var(--nord14-rgb), 0.4);
+}
+
+.diff-highlight code .token.prefix.inserted {
+    color: var(--nord14);
+    font-weight: 700;
+}
+
+.diff-highlight code .token.prefix.deleted {
+    color: var(--nord11);
+    font-weight: 700;
+}
+
+/* Dark */
+
+/* Inline blocks */
+.dark p code {
+    background-color: var(--nord2);
+    color: var(--nord6);
+    box-shadow: 4px 4px 6px rgba(var(--nord4-rgb), 0.12);
+}
+
+.dark code[class*=language-],
+.dark pre[class*=language-] {
+    color: var(--nord6);
+    background: var(--nord2);
+}
+
+/* Selection */
+.dark code[class*=language-] ::selection,
+.dark code[class*=language-]::selection,
+.dark code[class*=language-] ::-moz-selection,
+.dark code[class*=language-]::-moz-selection,
+.dark pre[class*=language-] ::selection,
+.dark pre[class*=language-]::selection,
+.dark pre[class*=language-] ::-moz-selection,
+.dark pre[class*=language-]::-moz-selection {
+    background: var(--nord8);
+}
+
+.dark .language-css .token.string,
+.dark .style .token.string,
+.dark .token.entity,
+.dark .token.url,
+.dark .token.cdata,
+.dark .token.comment,
+.dark .token.doctype,
+.dark .token.prolog {
+    color: var(--comment-dark);
+    background: none;
+}
+
+.dark .token.operator,
+.dark .token.punctuation {
+    color: var(--nord6);
+    background: none;
+}
+
+.dark .token.atrule,
+.dark .token.attr-value,
+.dark .token.keyword
+.dark .token.boolean,
+.dark .token.constant,
+.dark .token.deleted,
+.dark .token.property,
+.dark .token.symbol,
+.dark .token.tag {
+    color: var(--nord9);
+}
+
+.dark .token.attr-name,
+.dark .token.builtin,
+.dark .token.char,
+.dark .token.inserted,
+.dark .token.selector {
+    color: var(--nord7);
+}
+
+.dark .token.string,
+.dark .token.interpolation .token.interpolation-punctuation {
+    color: var(--nord14) !important;
+}
+
+.dark .token.atrule,
+.dark .token.attr-value,
+.dark .token.keyword,
+.dark .token.function {
+    color: var(--nord8);
+}
+
+
+.dark .token.important,
+.dark .token.regex,
+.dark .token.variable {
+    color: var(--nord13);
+}
+
+.dark .token.number {
+    color: var(--nord15);
+    font-weight: 700;
+}
+
+.dark .line-highlight,
+.dark pre[id].linkable-line-numbers span.line-numbers-rows > span:hover::before {
+    background: rgba(var(--nord7-rgb), 0.2);
+}
+
+.dark pre[id].linkable-line-numbers span.line-numbers-rows > span::before {
+    color: var(--comment-dark);
+    font-weight: 600;
+}
+
+
+.dark div.code-toolbar>.toolbar>.toolbar-item>a,
+.dark div.code-toolbar>.toolbar>.toolbar-item>button,
+.dark div.code-toolbar>.toolbar>.toolbar-item>span{
+    color: var(--nord6);
+    background: var(--nord2);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-1,
+.dark .rainbow-braces .token.punctuation.brace-level-10 {
+    color: var(--nord9);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-2,
+.dark .rainbow-braces .token.punctuation.brace-level-11 {
+    color: var(--nord15);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-3,
+.dark .rainbow-braces .token.punctuation.brace-level-12 {
+    color: var(--nord14);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-4,
+.dark .rainbow-braces .token.punctuation.brace-level-9 {
+    color: var(--nord10);
+    filter: brightness(98%) contrast(101%) hue-rotate(1deg);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-5 {
+    color: var(--nord7);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-6 {
+    color: var(--nord9);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-7 {
+    color: var(--nord15);
+}
+
+.dark .rainbow-braces .token.punctuation.brace-level-8 {
+    color: var(--nord15);
+}
+
+.dark .command-line-prompt > span[data-user]::before {
+    font-weight: 700;
+    background: linear-gradient(to right,
+        var(--nord10) 5%, var(--nord10) 85%,
+        var(--nord6) 85%);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.dark .command-line-prompt > span[data-user=root]::before {
+    font-weight: 700;
+    background: linear-gradient(to right,
+        var(--nord11) 5%, var(--nord11) 85%,
+        var(--nord6) 85%);
+    -webkit-background-clip: text;
+    color: transparent;
+}

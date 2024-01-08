@@ -1,0 +1,4 @@
+[{:page/uri "/atom.xml"
+  :page/kind :page.kind/atom-feed}
+ {:page/uri "/planetclojure.xml"
+  :page/kind :page.kind/planetclojure-feed}]
