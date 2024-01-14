@@ -1,0 +1,54 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+      - feat/powerpack
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: browser-actions/setup-chrome@v1
+      - uses: nanasess/setup-chromedriver@v2
+
+      - name: 🔧 Install java
+        uses: actions/setup-java@v3.12.0
+        with:
+          distribution: "temurin"
+          java-version: "11.0.20+8"
+
+      - name: 🔧 Install clojure & bb
+        uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: "1.11.1.1403"
+          bb: 'latest'
+
+      - name: 🏗 Install deps
+        run: yarn && ln -sf /usr/local/bin/chromedriver resources/chromedriver
+
+      - name: 📦 Cache deps
+        uses: actions/cache@v3.3.1
+        with:
+          path: |
+            ~/.m2
+            ~/.gitlibs
+            ~/.deps.clj
+          key: ${{ runner.os }}-aoc-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-aoc-
+
+      - name: 🏗 Build Site
+        run: bb build
+
+      - name: 🔒 Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: unnecessary
+
+      - name: 🔒 Adding Known Hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 🚀 Deploy with rsync
+        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/powerpack/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/user-data/www/elken.dev/

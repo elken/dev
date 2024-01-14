@@ -1,0 +1,21 @@
+{:min-bb-version "0.4.0"
+ :tasks
+ {:requires ([babashka.fs :as fs])
+  dev         {:doc  "Run tasks for dev"
+               :task (run '-dev {:parallel true})}
+  -dev        {:depends [dev:css]}
+  dev:css    {:doc  "Runs front-end compilation"
+              :task (shell "yarn dev:css")}
+  -clean (do
+           (println "Removing target folder")
+           (fs/delete-tree "target"))
+  -build (do
+           (println "Building site")
+           (clojure "-X:build"))
+  prod:css {:doc "Compile CSS for production"
+            :task (shell "yarn prod:css")}
+  build {:doc "Run the steps needed to build the site"
+         :task (do
+                 (run '-clean)
+                 (run 'prod:css)
+                 (run '-build))}}}
