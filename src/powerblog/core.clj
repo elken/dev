@@ -58,7 +58,8 @@
                               "/js/clickable-headings.js"]}}
 
    :optimus/assets [{:public-dir "public"
-                     :paths [#".*\.jpg"
+                     :paths ["/favicon.ico"
+                             #".*\.jpg"
                              #".*\.png"
                              #".*\.svg"]}]
 

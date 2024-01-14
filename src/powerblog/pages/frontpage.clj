@@ -25,7 +25,7 @@
      [:a {:id ""
           :href uri} title]]
     (when description
-      [:h4.text-nord-1.dark:text-nord-4.text-lg.font-semibold
+      [:h4.text-lg.font-semibold
        (md/render-html description)])
     [:span.flex.flex-col.sm:flex-row.gap-3.items-center.mb-3
      [:span.select-none
