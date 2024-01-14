@@ -66,7 +66,7 @@
   (let [site-title (-> context :powerpack/app :site/title)]
     [:html
      [:head
-      (when title [:title  (str title (when site-title (str " | " site-title)))])
+      (when title [:title (str title (when site-title (str " | " site-title)))])
       [:link {:rel "apple-touch-icon" :sizes "180x180" :href "/apple-touch-icon.png"}]
       [:link {:href "/atom.xml" :rel "alternate" :title "lkn's ramblings" :type "application/atom+xml"}]
       [:link {:rel "icon" :type "image/png" :sizes "32x32" :href "/favicon-32x32.png"}]
