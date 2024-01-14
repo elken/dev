@@ -10,10 +10,5 @@
   "scripts": {
     "dev:css": "tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --watch",
     "prod:css": "tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --minify"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.3",
-    "postcss-cli": "^11.0.0"
   }
 }
