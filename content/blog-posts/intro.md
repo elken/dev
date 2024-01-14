@@ -2,10 +2,9 @@
 :blog-post/author {:person/id :lkn}
 :blog-post/created-at 2023-12-10
 :blog-post/tags [:powerpack :meta]
-:open-graph/title Everyone's first blog post is about how they made their blog
-:open-graph/image /header/images/intro_preview.png
+:blog-post/header-image /header/images/intro_preview.png
+:open-graph/image /opengraph/intro.png
 :open-graph/description Blogging is fun; and why yes the year _is_ 2007
-
 :blog-post/preview
 
 This site has been _long_ overdue for a clean refactor. I spent so long chasing the "perfect" generator; and it seems I've finally found it.

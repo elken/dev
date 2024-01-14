@@ -2,7 +2,8 @@
  :deps {org.clojure/clojure {:mvn/version "1.11.1"}
         no.cjohansen/powerpack {:mvn/version "2024.01.08"}
         org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}
-        no.cjohansen/phosphor-clj {:mvn/version "2023.07.07"}}
+        no.cjohansen/phosphor-clj {:mvn/version "2023.07.07"}
+        etaoin/etaoin {:mvn/version "1.0.40"}}
  :aliases {:dev {:extra-paths ["dev"]
                  :extra-deps {djblue/portal {:mvn/version "0.51.0"}}}
            :build {:exec-fn powerblog.export/export!}}}

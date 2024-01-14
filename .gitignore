@@ -4,3 +4,6 @@
 .nrepl-port
 target/powerpack
 resources/public/styles.css
+/resources/geckodriver
+/resources/chromedriver
+dev/user.clj

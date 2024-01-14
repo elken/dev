@@ -6,13 +6,13 @@
    [powerblog.util :as util]
    [powerpack.markdown :as md]))
 
-(defn- count-words [body]
+(defn count-words [body]
   (-> body
       (.split "\\W+")
       seq
       count))
 
-(defn- reading-time [body]
+(defn reading-time [body]
   (-> body
       count-words
       (/ 250)

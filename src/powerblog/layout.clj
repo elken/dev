@@ -62,11 +62,11 @@
     ". Source code available "
     [:a.underline.hover:text-sky-400 {:href "https://github.com/elken/dev"} "here"]]])
 
-(defn layout [{:keys [title] :as context} {:open-graph/keys [image]} & content]
+(defn layout [{:keys [title] :as context} {:blog-post/keys [header-image]} & content]
   (let [site-title (-> context :powerpack/app :site/title)]
     [:html
      [:head
-      (when title [:title  (str title (when site-title (str "|" site-title)))])
+      (when title [:title  (str title (when site-title (str " | " site-title)))])
       [:link {:rel "apple-touch-icon" :sizes "180x180" :href "/apple-touch-icon.png"}]
       [:link {:href "/atom.xml" :rel "alternate" :title "lkn's ramblings" :type "application/atom+xml"}]
       [:link {:rel "icon" :type "image/png" :sizes "32x32" :href "/favicon-32x32.png"}]
@@ -92,8 +92,8 @@
       (header)
       [:main.px-6.flex-1.overflow-hidden.prose-a:text-nord-9.prose-a:dark:text-nord-8
        [:div.h-full.rounded-lg.shadow-md.overflow-auto.bg-nord-6.dark:bg-nord-1
-        (when image
-          [:img.h-40.rounded-t.w-full.object-cover.object-center {:src image}])
+        (when header-image
+          [:img.h-40.rounded-t.w-full.object-cover.object-center {:src header-image}])
         [:div.w-full.max-w-none.px-6.sm:px-7.xl:px-8.2xl:px-10.py-4
          content]]]
       (footer)]]))
