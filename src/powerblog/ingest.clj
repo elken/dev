@@ -34,6 +34,15 @@
   (let [resource-path (get-in powerpack-app [:imagine/config :resource-path])
         resource-dir (first (:powerpack/resource-dirs powerpack-app))
         db (d/db (:datomic/conn powerpack-app))]
+    (let [{:keys [width height]} (etaoin/get-window-size driver)]
+      (try
+        (etaoin/go driver (str "http://localhost:" (:powerpack/port powerpack-app)))
+        (etaoin/set-window-size driver 720 540)
+        (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_wide.png"))
+        (etaoin/set-window-size driver 540 720 )
+        (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_mobile.png"))
+        (finally
+          (etaoin/set-window-size driver width height))))
     (doall
      (for [post (d/q '[:find [?e]
                        :where

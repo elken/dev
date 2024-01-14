@@ -1,5 +1,7 @@
 [{:page/uri "/atom.xml"
   :page/kind :page.kind/atom-feed}
+ {:page/uri "/manifest.json"
+  :page/kind :page.kind/webmanifest}
  {:page/uri "/tags/"
   :page/kind :page.kind/tags-listing}
  {:page/uri "/planetclojure.xml"

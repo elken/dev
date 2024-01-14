@@ -31,6 +31,8 @@
 
 (def config
   {:site/title "lkn's ramblings"
+   :site/short-name "elken.dev"
+   :site/description "A selection of ramblings about tech, clojure & whatever else is on my mind"
    :site/author "Ellis Kenyő"
    :site/base-url "https://elken.dev"
    :powerpack/render-page #'pages/render-page
@@ -58,8 +60,7 @@
    :optimus/assets [{:public-dir "public"
                      :paths [#".*\.jpg"
                              #".*\.png"
-                             #".*\.svg"
-                             "/site.webmanifest"]}]
+                             #".*\.svg"]}]
 
    :imagine/config {:prefix "image-assets"
                     :resource-path "public"
