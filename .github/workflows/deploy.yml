@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: browser-actions/setup-chrome@v1
-      - uses: nanasess/setup-chromedriver@v2
 
       - name: 🔧 Install java
         uses: actions/setup-java@v3.12.0
@@ -25,7 +23,8 @@ jobs:
           bb: 'latest'
 
       - name: 🏗 Install deps
-        run: yarn && ln -sf /usr/local/bin/chromedriver resources/chromedriver
+        run: |
+          yarn
 
       - name: 📦 Cache deps
         uses: actions/cache@v3.3.1
@@ -34,9 +33,10 @@ jobs:
             ~/.m2
             ~/.gitlibs
             ~/.deps.clj
-          key: ${{ runner.os }}-aoc-${{ github.sha }}
+            node_modules
+          key: ${{ runner.os }}-dev-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-aoc-
+            ${{ runner.os }}-dev-
 
       - name: 🏗 Build Site
         run: bb build

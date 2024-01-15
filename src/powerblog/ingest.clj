@@ -1,13 +1,11 @@
 (ns powerblog.ingest
   (:require
    [clojure.java.io :as io]
+   [clojure.java.shell :as sh]
    [clojure.string :as str]
-   [etaoin.api :as etaoin]
    [datomic.api :as d]
+   [etaoin.api :as etaoin]
    [powerblog.pages.opengraph :as opengraph]))
-
-(defonce driver (etaoin/chrome {:headless true
-                                :path-driver (str (io/file (io/resource "chromedriver")))}))
 
 (defn get-page-kind [file-name]
   (cond
@@ -30,19 +28,23 @@
         (and (:page/uri tx) kind)
         (assoc :page/kind kind)))))
 
-(defn on-ingested [powerpack-app results]
+(defn- create-screenshots [powerpack-app]
   (let [resource-path (get-in powerpack-app [:imagine/config :resource-path])
         resource-dir (first (:powerpack/resource-dirs powerpack-app))
-        db (d/db (:datomic/conn powerpack-app))]
-    (let [{:keys [width height]} (etaoin/get-window-size driver)]
-      (try
-        (etaoin/go driver (str "http://localhost:" (:powerpack/port powerpack-app)))
-        (etaoin/set-window-size driver 720 540)
-        (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_wide.png"))
-        (etaoin/set-window-size driver 540 720 )
-        (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_mobile.png"))
-        (finally
-          (etaoin/set-window-size driver width height))))
+        db (d/db (:datomic/conn powerpack-app))
+        driver (etaoin/chrome {:headless true})]
+
+    (when-let [url (:site/base-url powerpack-app)]
+      (let [{:keys [width height]} (etaoin/get-window-size driver)]
+        (try
+          (etaoin/go driver url)
+          (etaoin/set-window-size driver 720 540)
+          (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_wide.png"))
+          (etaoin/set-window-size driver 540 720 )
+          (etaoin/screenshot driver (io/file resource-dir resource-path "screenshots" "main_mobile.png"))
+          (finally
+            (etaoin/set-window-size driver width height)))))
+
     (doall
      (for [post (d/q '[:find [?e]
                        :where
@@ -66,14 +68,25 @@
                                       file-path)
            (finally
              (when (.exists html-path)
-               (.delete html-path)))))))
-    (->> (for [tag (d/q '[:find [?tag ...]
-                          :where
-                          [_ :blog-post/tags ?tag]]
-                        db)]
-           {:page/uri (str "/tag/" (name tag) "/")
-            :page/kind :page.kind/tag
-            :tag-page/tag tag})
+               (.delete html-path)))))))))
 
-         (d/transact (:datomic/conn powerpack-app))
-         deref)))
+(defn- chrome-installed?
+  "Checks if Google Chrome is installed."
+  []
+  (let [traditional (:exit (sh/sh "which" "google-chrome"))
+        chromedriver (:exit (sh/sh "which" "chromedriver"))]
+    (= traditional chromedriver 0)))
+
+(defn on-ingested [powerpack-app results]
+  (when (chrome-installed?)
+    (create-screenshots powerpack-app))
+  (->> (for [tag (d/q '[:find [?tag ...]
+                        :where
+                        [_ :blog-post/tags ?tag]]
+                      (d/db (:datomic/conn powerpack-app)))]
+         {:page/uri (str "/tag/" (name tag) "/")
+          :page/kind :page.kind/tag
+          :tag-page/tag tag})
+
+       (d/transact (:datomic/conn powerpack-app))
+       deref))
