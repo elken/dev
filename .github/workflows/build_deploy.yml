@@ -52,4 +52,4 @@ jobs:
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: 🚀 Deploy with rsync
-        run: rsync -avz --delete --ignore-existing -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/powerpack/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/user-data/www/elken.dev/
+        run: rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/powerpack/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/user-data/www/elken.dev/
