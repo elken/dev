@@ -1,4 +1,4 @@
-name: deploy
+name: Deploy to https://elken.dev
 on:
   push:
     branches:
@@ -6,6 +6,7 @@ on:
       - feat/powerpack
 jobs:
   build-and-deploy:
+    name: "Build Powerpack"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
