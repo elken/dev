@@ -30,3 +30,11 @@
                      :type "image/png"
                      :sizes "540x720"
                      :form_factor "narrow"}]})))
+
+(defn render-oembed [context]
+(let [{:powerpack/keys [app]} context
+        {:site/keys [title author base-url]} app]
+    (json/write-str
+     {:author_name author
+      :provider_name title
+      :provider_url base-url})))

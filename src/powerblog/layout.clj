@@ -75,7 +75,9 @@
       [:meta {:name "theme-color" :media "(prefers-color-scheme: dark)" :content "#2e3440"}]
       [:meta {:name "theme-color" :media "(prefers-color-scheme: light)" :content "#d8dee9"}]
       [:meta {:name "author" :content "Ellis Kenyő"}]
+      [:meta {:name "twitter:card" :content "summary_large_image"}]
       [:link {:rel "manifest" :href "/manifest.json"}]
+      [:link {:type "application/json+oembed" :href "/oembed.json"}]
       (include-css "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css")
       [:script {:defer true
                 :src "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
