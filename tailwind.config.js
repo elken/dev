@@ -8,10 +8,10 @@ module.exports = {
           DEFAULT: {
             css: {
               'code::before': {
-                content: '""'
+                content: 'none'
               },
               'code::after': {
-                content: '""'
+                content: 'none'
               }
             }
           }
