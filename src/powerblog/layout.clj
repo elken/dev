@@ -70,10 +70,10 @@
       (when title [:title (str title (when site-title (str " | " site-title)))])
       [:link {:href "/atom.xml" :rel "alternate" :title "lkn's ramblings" :type "application/atom+xml"}]
       (when-let [href (link/file-path context "/safari-pinned-tab.svg")]
-        [:link {:rel "mask-icon" :href href :color "#5bbad5"}])
-      [:meta {:name "msapplication-TileColor" :content "#2e3440"}]
-      [:meta {:name "theme-color" :media "(prefers-color-scheme: dark)" :content "#2e3440"}]
+        [:link {:rel "mask-icon" :href href :color "#b48ead"}])
+      [:meta {:name "msapplication-TileColor" :content "#b48ead"}]
       [:meta {:name "theme-color" :media "(prefers-color-scheme: light)" :content "#d8dee9"}]
+      [:meta {:name "theme-color" :media "(prefers-color-scheme: dark)" :content "#2e3440"}]
       [:meta {:name "author" :content "Ellis Kenyő"}]
       [:meta {:name "twitter:card" :content "summary_large_image"}]
       [:link {:rel "manifest" :href "/manifest.json"}]
