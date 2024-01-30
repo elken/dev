@@ -33,7 +33,7 @@
     (colour-mode-toggle)]])
 
 (defn header []
-  [:header.px-6.sm:px-7.xl:px-8.2xl:px-10.py-2
+  [:header.bg-nord-5.dark:bg-nord-0.mb-2.w-full.fixed.px-6.sm:px-7.xl:px-8.2xl:px-10.py-2
    [:nav.flex.items-center.justify-between.flex-wrap
     [:a {:href "/"}
      [:img.h-10 {:src "/logo/images/lkn.png"}]]
@@ -90,9 +90,9 @@
                 :onload "renderMathInElement(document.body);"}]
       [:script {:type "module"}
        "import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';"]]
-     [:body.flex.flex-col.h-responsive-screen.bg-nord-5.dark:bg-nord-0.text-nord-3.dark:text-nord-4.line-numbers.rainbow-braces.match-braces.linkable-line-numbers.diff-highlight
+     [:body.flex.flex-col.bg-nord-5.dark:bg-nord-0.text-nord-3.dark:text-nord-4.line-numbers.rainbow-braces.match-braces.linkable-line-numbers.diff-highlight
       (header)
-      [:main.px-6.flex-1.overflow-hidden.prose-a:text-nord-9.prose-a:dark:text-nord-8
+      [:main.mt-14.px-6.flex-1.overflow-hidden.prose-a:text-nord-9.prose-a:dark:text-nord-8
        [:div.h-full.rounded-lg.shadow-md.overflow-auto.bg-nord-6.dark:bg-nord-1
         (when header-image
           [:img.h-40.rounded-t.w-full.object-cover.object-center {:src header-image}])
