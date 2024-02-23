@@ -12,7 +12,8 @@
               :where
               [?e :blog-post/author]]
             db)
-       (map #(d/entity db %))))
+       (map #(d/entity db %))
+       (sort-by :blog-post/created-at #(compare %2 %1))))
 
 (defn article-page [{:page/keys [uri title]
                       :blog-post/keys [header-image created-at tags preview]
