@@ -55,4 +55,19 @@
       [:div.flex.gap-3
        (for [tag (:blog-post/tags page)]
          (components/tag {:body (name tag)
-                          :name (name tag)}))]])))
+                          :name (name tag)}))]]
+     [:script {:id "comments"
+               :src "https://giscus.app/client.js"
+               :data-repo "elken/dev"
+               :data-repo-id "R_kgDOK4IZYw"
+               :data-category "Ideas"
+               :data-category-id "DIC_kwDOK4IZY84CbpI1"
+               :data-mapping "pathname"
+               :data-strict "0"
+               :data-reactions-enabled "1"
+               :data-emit-metadata "0"
+               :data-input-position "top"
+               :data-theme "preferred_color_scheme"
+               :data-lang "en"
+               :crossorigin "anonymous"
+               :async true}])))
