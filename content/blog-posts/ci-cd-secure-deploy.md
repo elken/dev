@@ -2,7 +2,7 @@
 :blog-post/author {:person/id :lkn}
 :blog-post/created-at 2024-02-23
 :blog-post/tags [:ci :cd :devops :github]
-:blog-post/header-image /header/images/ci_cd_secure_deploy_preview.jpg
+:blog-post/header-image /header/images/ci-cd-secure-deploy/preview.jpg
 :open-graph/image /opengraph/ci-cd-secure-deploy.png
 :open-graph/description Pushing web apps/sites to a private server
 :blog-post/preview

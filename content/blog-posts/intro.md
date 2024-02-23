@@ -2,7 +2,7 @@
 :blog-post/author {:person/id :lkn}
 :blog-post/created-at 2023-12-10
 :blog-post/tags [:powerpack :meta]
-:blog-post/header-image /header/images/intro_preview.png
+:blog-post/header-image /header/images/intro/preview.png
 :open-graph/image /opengraph/intro.png
 :open-graph/description Blogging is fun; and why yes the year _is_ 2007
 :blog-post/preview
