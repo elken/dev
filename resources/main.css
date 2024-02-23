@@ -114,11 +114,11 @@
     @apply m-2 border-2 border-nord-10 dark:border-nord-7 rounded-lg overflow-hidden shadow-lg bg-nord-6 dark:bg-nord-2 transition-all;
 
     img {
-      @apply px-2 pt-2;
+      @apply px-2 pt-2 m-auto;
     }
 
     figcaption {
-      @apply !mt-0 text-nord-3 dark:text-nord-4 text-center text-sm italic font-medium;
+      @apply !mt-0 text-nord-3 dark:text-nord-4 text-center text-sm italic font-medium p-2;
     }
   }
 
