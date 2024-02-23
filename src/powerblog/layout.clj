@@ -1,6 +1,6 @@
 (ns powerblog.layout
   (:require
-   [hiccup.page :refer [include-css]]
+   [hiccup.page :refer [include-css include-js]]
    [optimus.link :as link]))
 
 (defn colour-mode-toggle []
@@ -79,6 +79,7 @@
       [:link {:rel "manifest" :href "/manifest.json"}]
       [:link {:type "application/json+oembed" :href "/oembed.json"}]
       (include-css "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css")
+      (include-js "https://rawcdn.githack.com/nextapps-de/spotlight/0.7.8/dist/spotlight.bundle.js")
       [:script {:defer true
                 :src "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
                 :integrity "sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"

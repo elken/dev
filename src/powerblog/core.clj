@@ -56,6 +56,7 @@
                      "app.js"
                      {:public-dir "public"
                       :paths ["/js/theme-toggle.js"
+                              "/js/lightbox-setup.js"
                               "/js/clickable-headings.js"]}}
 
    :optimus/assets [{:public-dir "public"

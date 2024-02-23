@@ -155,4 +155,8 @@
     color: #191c25 !important;
     background: #81a1c1;
   }
+
+  article img:not(.no-spotlight) {
+    @apply cursor-zoom-in;
+  }
 }

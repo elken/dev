@@ -14,5 +14,5 @@
 
 (defn author [{:person/keys [id full-name]}]
   [:div.flex.items-center.gap-3
-   [:img.m-0.h-14 {:src (str "/logo/images/" (name id) ".png")}]
+   [:img.m-0.h-14.no-spotlight {:src (str "/logo/images/" (name id) ".png")}]
    full-name])
