@@ -1,3 +1,5 @@
-[...document.querySelectorAll("article img:not(.no-spotlight)")].map((elem) =>
-  elem.classList.add("spotlight"),
-);
+document
+  .querySelectorAll("article img:not(.no-spotlight)")
+  .forEach(function (elem) {
+    elem.classList.add("spotlight");
+  });
