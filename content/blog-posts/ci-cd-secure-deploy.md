@@ -122,7 +122,7 @@ the only important one is the key and the host for privacy.
 | `SSH_HOST` | The IP/DNS name for the server you're deploying to. If you're using DNS, ensure it's resolvable via the internet first |
 | `SSH_KEY`  | The _private_ key that you generated from the previous step `/home/$USER/.ssh/github-deploy`                           |
 | `SSH_PORT` | The port used for SSH on the machine you're connecting to (default to 22 if you're unsure)                             |
-| `SSH_USER` | The user you want to connect as. Most setups will probably have `root` disabled                                                                                                                        |
+| `SSH_USER` | The user you want to connect as. Most setups will probably have `root` disabled                                        |
 
 Again make sure that for simplicity these are defined under "Repository Secrets" not "Environment Secrets" (it'll still work, just needs extra setup)
 
