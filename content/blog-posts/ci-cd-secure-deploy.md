@@ -109,7 +109,7 @@ not exist when you read this, so caveat emptor.
 Navigate to your repo's project settings and under security, look for Secrets and Variables then Actions.
 
 <figure>
-    <img src="/images/ci_cd_secure_deploy_demo_1.png">
+    <img src="/images/ci-cd-secure-deploy/demo_1.png">
     <figcaption>Figure 1. Github variables, chopped for brevity</figcaption>
 </figure>
 
