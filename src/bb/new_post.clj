@@ -7,17 +7,16 @@
    [clojure.edn :as edn]
    [clojure.string :as str]))
 
-(def post-keys [:page/title
-                :blog-post/author
-                :blog-post/created-at
-                :blog-post/tags
-                :blog-post/header-image
-                :open-graph/image
-                :open-graph/description
-                :blog-post/preview
-                :page/body])
-
-
+(def post-keys
+  [:page/title
+   :blog-post/author
+   :blog-post/created-at
+   :blog-post/tags
+   :blog-post/header-image
+   :open-graph/image
+   :open-graph/description
+   :blog-post/preview
+   :page/body])
 
 (defn post-path [slug]
   (fs/path "content" "blog-posts" (format "%s.md" slug)))
@@ -111,7 +110,7 @@
   [opts]
   (get-value
    {:result-fn #(map (comp keyword slugify) %)
-    :gum-args `(:write :header "Enter tags to use (one per line, result will be slugified)")
+    :gum-args '(:write :header "Enter tags to use (one per line, result will be slugified)")
     :key :tags
     :name "Tags"
     :value-fn #(str/join ", " (map name %))}
@@ -122,7 +121,7 @@
   [opts]
   (get-value
    {:result-fn first
-    :gum-args `(:write :header "Enter text/markdown description to be used as a sub-title")
+    :gum-args '(:write :header "Enter text/markdown description to be used as a sub-title")
     :key :description
     :name "Description"}
    opts))
@@ -132,7 +131,7 @@
   [opts]
   (get-value
    {:result-fn #(str/join "\n" %)
-    :gum-args `(:write :header "Enter preview text/markdown to be displayed")
+    :gum-args '(:write :header "Enter preview text/markdown to be displayed")
     :key :preview
     :name "Preview"}
    opts))
