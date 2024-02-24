@@ -35,6 +35,7 @@
                                    [?e :blog-post/tags ?tags]]
                                  (:app/db context))
                             (map second)
-                            frequencies)]
+                            frequencies
+                            (sort-by second #(compare %2 %1)))]
        (components/tag {:body (str count "x " (name tag))
                         :name (name tag)}))]]))
