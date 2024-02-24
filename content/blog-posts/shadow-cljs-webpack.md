@@ -5,9 +5,9 @@
 :blog-post/header-image /header/images/shadow-cljs-webpack/preview.png
 :open-graph/image /opengraph/shadow-cljs-webpack.png
 :open-graph/description Bundling JavaScript like it's 2015
-:blog-post/preview 
+:blog-post/preview
 Writing ClojureScript is nice, until we need something from "modern JavaScript". If only there was a better way...
-:page/body 
+:page/body
 
 I've recently found myself leaning more on ClojureScript when it comes to
 writing web applications. It brings a lot of pros to the mix, a few of which
