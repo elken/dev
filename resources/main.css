@@ -144,7 +144,15 @@
   }
 
   .footnotes p {
-    @apply inline-block;
+    @apply block pr-2;
+  }
+
+  .footnotes li {
+    @apply relative;
+  }
+
+  .footnotes .footnote-backref {
+    @apply absolute top-0 left-full;
   }
 
   a {
