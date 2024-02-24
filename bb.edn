@@ -1,6 +1,12 @@
 {:min-bb-version "0.4.0"
+ :paths ["src"]
+ :deps {io.github.lispyclouds/bblgum {:git/sha "1d4de3d49b84f64d1b71930fa1161f8d2622a4d9"}
+        org.clj-commons/pretty {:mvn/version "2.2.1"}}
  :tasks
  {:requires ([babashka.fs :as fs])
+  post {:doc "Generate a new post using a wizard"
+        :requires ([bb.new-post :as task])
+        :task (task/write-post)}
   dev         {:doc  "Run tasks for dev"
                :task (run '-dev {:parallel true})}
   -dev        {:depends [dev:css]}
