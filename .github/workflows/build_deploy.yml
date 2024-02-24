@@ -1,6 +1,10 @@
 name: Deploy to https://elken.dev
 on:
   push:
+    paths:
+      - resources
+      - content
+      - src
     branches:
       - master
       - feat/powerpack
@@ -21,7 +25,7 @@ jobs:
         uses: DeLaGuardo/setup-clojure@master
         with:
           cli: "1.11.1.1403"
-          bb: 'latest'
+          bb: "latest"
 
       - name: 🏗 Install deps
         run: |
