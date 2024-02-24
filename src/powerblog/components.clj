@@ -1,7 +1,7 @@
 (ns powerblog.components)
 
 (defn tag [{:keys [body name]}]
-  [:a.bg-nord-9.text-nord-6.text-xs.font-medium.mr-2.rounded.no-underline.not-prose.hover:!text-nord-6
+  [:a.inline-block.bg-nord-9.text-nord-6.text-xs.font-medium.mr-2.rounded.no-underline.not-prose.hover:!text-nord-6
    {:class "px-2.5 py-0.5 hover:opacity-90"
     :href (str "/tag/" name "/")}
    [:svg.inline.fill-nord-10
