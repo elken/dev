@@ -2,9 +2,9 @@ name: Deploy to https://elken.dev
 on:
   push:
     paths:
-      - resources
-      - content
-      - src
+      - resources/**
+      - content/**
+      - src/**
     branches:
       - master
       - feat/powerpack
