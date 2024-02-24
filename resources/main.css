@@ -167,4 +167,8 @@
   article img:not(.no-spotlight) {
     @apply cursor-zoom-in;
   }
+
+  .prose {
+    max-width: 90ch !important;
+  }
 }
