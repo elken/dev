@@ -167,6 +167,111 @@ you're using async on the script tags, I wouldn't recommend it here.
 
 And that's it!
 
+## How does it handle in a real app?
+
+Okay, that's not the _full_ story. 
+
+I'm sure someone is sat there thinking "adding another compile process sure
+seems like that's gonna introduce a lot of complexity and slow everything down",
+so let's try and answer those two points.
+
+### Complexity
+
+In terms of code we need to introduce and thus maintain, it's very minimal. You
+can tweak the build setup as much as you want, if you need your external js file
+to end up somewhere else or have other transformations applied etc.
+
+The fairest point here is the introduction of webpack. Anyone that's done web
+development for a few years is well aware of weback, JavaScript bundling and all
+the um ... fun that introduces.
+
+For our needs here, we just need weback to emit JavaScript. The complex things
+it would normally do like loading JavaScript, ClojureScript, CSS, images and the
+like are already taken care of and handled in your code by shadow-cljs. The only
+things it has to do is process JavaScript dependencies, and by reducing the
+amount of code it's responsible for; you reduce the chance of issues. Further
+reduced if you use a versioned lock file; if you dependencies don't change the
+code produced won't change either.
+
+The `watch` process doesn't _technically_ have to be a watch since it's only
+taking care of dependencies. You could thus just have the file produced when
+shadow-cljs starts up (since you need to restart to load a new dependency
+usually anyway).
+
+To summarize then, there is a very valid argument around the complexity
+introduced, but due to the way in which we use webpack I think that the pro can
+outweigh the con; though I don't think this approach is needed in every
+ClojureScript project or even most projects. 
+
+Opt-in _when_ you need it.
+
+### Performance
+
+Another fair point on paper, the idea that introducing another compile step will
+increase the time it takes to compile is a no-brainer. More things = more time.
+
+And yeah, I can't refute that. But what I can claim is by _how much_.
+
+So let's run the tasks and see how long they take in isolation using my AMD Ryzen 7 7700X.
+
+```shell {.command-line .no-line-numbers}
+npx shadow-cljs compile main
+```
+
+```shell {.no-line-numbers}
+shadow-cljs - config: /home/lkn/build/snippet-share/shadow-cljs.edn
+[:main] Compiling ...
+[:main] Build completed. (86 files, 0 compiled, 0 warnings, 1.24s)
+```
+
+`1.24` seconds to produce the `target/external.js` file as well as the project's
+code. Not bad.
+
+Now for webpack
+```shell {.command-line .no-line-numbers}
+npx webpack-cli build --entry ./target/external.js --output-path resources/public/js/libs --target web --mode development
+```
+
+```shell {.no-line-numbers}
+assets by chunk 390 KiB (id hint: vendors)
+  asset vendors-node_modules_codemirror_legacy-modes_mode_sql_js.js 113 KiB [compared for emit] (id hint: vendors)
+  asset vendors-node_modules_codemirror_legacy-modes_mode_css_js.js 102 KiB [compared for emit] (id hint: vendors)
+  asset vendors-node_modules_codemirror_legacy-modes_mode_javascript_js.js 96.7 KiB [compared for emit] (id hint: vendors)
+  asset vendors-node_modules_codemirror_legacy-modes_mode_clojure_js.js 42.4 KiB [compared for emit] (id hint: vendors)
+  asset vendors-node_modules_codemirror_legacy-modes_mode_python_js.js 36.5 KiB [compared for emit] (id hint: vendors)
+asset main.js 15.7 MiB [compared for emit] (name: main)
+asset node_modules_codemirror_legacy-modes_mode_mllike_js.js 22.6 KiB [compared for emit]
+asset node_modules_codemirror_legacy-modes_mode_ttcn-cfg_js.js 20.9 KiB [compared for emit]
+asset node_modules_codemirror_legacy-modes_mode_asn1_js.js 19.7 KiB [compared for emit]
+asset node_modules_codemirror_legacy-modes_mode_rpm_js.js 8.88 KiB [compared for emit]
+runtime modules 8.08 KiB 12 modules
+modules by path ./node_modules/ 6 MiB
+  modules by path ./node_modules/highlight.js/lib/ 1.46 MiB 194 modules
+  modules by path ./node_modules/@codemirror/ 1.89 MiB 125 modules
+  modules by path ./node_modules/@lezer/ 763 KiB 16 modules
+  modules by path ./node_modules/@uiw/ 44.9 KiB 11 modules
+  modules by path ./node_modules/react/ 127 KiB 4 modules
+  modules by path ./node_modules/@replit/ 224 KiB 4 modules
+  modules by path ./node_modules/react-dom/ 1000 KiB 3 modules
+  modules by path ./node_modules/react-refresh/ 20.6 KiB 2 modules
+  modules by path ./node_modules/@babel/runtime/helpers/esm/*.js 764 bytes 2 modules
+  modules by path ./node_modules/@nextjournal/ 15.9 KiB 2 modules
+  modules by path ./node_modules/scheduler/ 17.3 KiB 2 modules
+  + 10 modules
+./target/external.js 986 bytes [built] [code generated]
+webpack 5.89.0 compiled successfully in 1099 ms
+```
+
+Much noisier output, but it runs in about the same time. And that's just the
+builds, any changes in both of these are then incremental builds than run in
+several milliseconds.
+
+These aren't isolated examples either, I ran these commands several times and
+replaced the times with the average (rather than having 3 code blocks).
+
+If you're spinning up the build process a lot, and a second is really important,
+then you'll unfortunately have to look into alternative avenues.
+
 ## Closing
 
 I aimed to give some setup on using webpack with shadow-cljs, and some of you
