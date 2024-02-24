@@ -89,8 +89,12 @@
                 :integrity "sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
                 :crossorigin "anonymous"
                 :onload "renderMathInElement(document.body);"}]
+      [:script {:async true
+                :src "https://www.googletagmanager.com/gtag/js?id=G-N4P230RNDE"}]
       [:script {:type "module"}
-       "import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';"]]
+       "import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';"]
+      [:script
+       "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-N4P230RNDE');"]]
      [:body.min-h-responsive-screen.flex.flex-col.bg-nord-5.dark:bg-nord-0.text-nord-3.dark:text-nord-4.line-numbers.rainbow-braces.match-braces.linkable-line-numbers.diff-highlight
       (header)
       [:main.mt-14.px-6.flex-1.overflow-hidden.prose-a:text-nord-9.prose-a:dark:text-nord-8
