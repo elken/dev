@@ -182,10 +182,10 @@ can tweak the build setup as much as you want, if you need your external js file
 to end up somewhere else or have other transformations applied etc.
 
 The fairest point here is the introduction of webpack. Anyone that's done web
-development for a few years is well aware of weback, JavaScript bundling and all
+development for a few years is well aware of webpack, JavaScript bundling and all
 the um ... fun that introduces.
 
-For our needs here, we just need weback to emit JavaScript. The complex things
+For our needs here, we just need webpack to emit JavaScript. The complex things
 it would normally do like loading JavaScript, ClojureScript, CSS, images and the
 like are already taken care of and handled in your code by shadow-cljs. The only
 things it has to do is process JavaScript dependencies, and by reducing the
