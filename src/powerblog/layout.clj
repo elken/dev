@@ -19,6 +19,8 @@
 (defn nav-menu []
   [:ul#nav-menu.sm:flex.w-full.sm:w-auto.hidden.mt-2.sm:mt-0.sm:space-x-2
    [:li
+    [:a {:href "/posts/"} "Posts"]]
+   [:li
     [:a {:href "/tags/"} "Tags"]]
    [:li
     [:a {:href "https://github.com/elken/dev/discussions/categories/comments"

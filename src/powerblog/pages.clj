@@ -2,6 +2,7 @@
   (:require
    [powerblog.pages.about :as about]
    [powerblog.pages.article :as article]
+   [powerblog.pages.blog-listing :as blog-listing]
    [powerblog.pages.blog-post :as blog-post]
    [powerblog.pages.feed :as feed]
    [powerblog.pages.frontpage :as frontpage]
@@ -17,6 +18,7 @@
     :page.kind/about-page (about/render-page context page)
     :page.kind/frontpage (frontpage/render-page context page)
     :page.kind/blog-post (blog-post/render-page context page)
+    :page.kind/posts-listing (blog-listing/render-page context page)
     :page.kind/tags-listing (tag/render-tags-page context page)
     :page.kind/article (article/render-page context page)
     :page.kind/tag (tag/render-tag-page context page)))

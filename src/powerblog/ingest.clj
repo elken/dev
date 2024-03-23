@@ -9,7 +9,7 @@
 
 (defn get-page-kind [file-name]
   (cond
-    (re-find #"^blog-posts/" file-name)
+    (re-find #"^posts/" file-name)
     :page.kind/blog-post
 
     (re-find #"^index(-nb)?\.md" file-name)
