@@ -62,8 +62,7 @@
    :optimus/assets [{:public-dir "public"
                      :paths ["/favicon.ico"
                              #".*\.jpg"
-                             #".*\.png"
-                             #".*\.svg"]}]
+                             #".*\.png"]}]
 
    :imagine/config {:prefix "image-assets"
                     :resource-path "public"
