@@ -32,7 +32,7 @@
 
 (defn render-page [context page]
   (layout/layout
-   (merge context {:title "Posts" :padding? false})
+   (merge context {:title "Portfolio" :padding? false})
    page
    [:ul#scroll-nav.fixed.top-4.md:flex.flex-row.z-50.gap-4.hidden
     {:class "right-1/2"}
