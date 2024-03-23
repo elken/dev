@@ -2,7 +2,7 @@
   (:require [datomic.api :as d]
             [powerblog.layout :as layout]
             [powerblog.components :as components]
-            [powerblog.pages.frontpage :as frontpage]))
+            [powerblog.pages.blog-listing :as blog-listing]))
 
 (defn get-blog-posts [db tag]
   (->> (d/q '[:find [?e ...]
@@ -21,7 +21,7 @@
       [:h1.text-center title]
       [:ul
        (for [blog-post (get-blog-posts (:app/db context) (:tag-page/tag page))]
-         (frontpage/article-page blog-post))]])))
+         (blog-listing/article-page blog-post))]])))
 
 (defn render-tags-page [context page]
   (layout/layout

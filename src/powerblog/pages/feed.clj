@@ -2,7 +2,7 @@
   "Courtesy of https://github.com/borkdude/quickblog"
   (:require
    [clojure.data.xml :as xml]
-   [powerblog.pages.frontpage :as frontpage]
+   [powerblog.pages.blog-listing :as blog-listing]
    [powerpack.markdown :as md])
   (:import
    java.time.format.DateTimeFormatter))
@@ -51,14 +51,14 @@
   (some #{:clojure :clojurescript} tags))
 
 (defn render-atom-feed [context]
-  (atom-feed (:powerpack/app context) (frontpage/get-blog-posts (:app/db context))))
+  (atom-feed (:powerpack/app context) (blog-listing/get-blog-posts (:app/db context))))
 
 (defn render-planetclojure-feed [context]
   (atom-feed
    (:powerpack/app context)
    (->> context
         :app/db
-        frontpage/get-blog-posts
+        blog-listing/get-blog-posts
         (filter clojure-post?))))
 
 ;; (defn- spit-feeds [{:keys [out-dir modified-posts posts] :as opts}]
