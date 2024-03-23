@@ -65,7 +65,9 @@
     ". Source code available "
     [:a.underline.hover:text-sky-400 {:href "https://github.com/elken/dev"} "here"]]])
 
-(defn layout [{:keys [title] :as context} {:blog-post/keys [header-image]} & content]
+(defn layout [{:keys [title padding?] :as context
+               :or {padding? true}}
+              {:blog-post/keys [header-image]} & content]
   (let [site-title (-> context :powerpack/app :site/title)]
     [:html
      [:head
@@ -80,6 +82,7 @@
       [:meta {:name "twitter:card" :content "summary_large_image"}]
       [:link {:rel "manifest" :href "/manifest.json"}]
       [:link {:type "application/json+oembed" :href "/oembed.json"}]
+      (include-css "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css")
       (include-css "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css")
       (include-js "https://rawcdn.githack.com/nextapps-de/spotlight/0.7.8/dist/spotlight.bundle.js")
       [:script {:defer true
@@ -103,6 +106,7 @@
        [:div.h-full.rounded-lg.shadow-md.overflow-auto.bg-nord-6.dark:bg-nord-1
         (when header-image
           [:img.h-40.rounded-t.w-full.object-cover.object-center {:src header-image}])
-        [:div.w-full.max-w-none.px-6.sm:px-7.xl:px-8.2xl:px-10.py-4
+        [:div.w-full.max-w-none
+         {:class (when padding? " px-6 sm:px-7 xl:px-8 2xl:px-10 py-4")}
          content]]]
       (footer)]]))

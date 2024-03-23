@@ -66,3 +66,22 @@ if (comments) {
     }
   });
 }
+
+function submitContactForm() {
+  const form = document.querySelector("section#contact form");
+  if (form) {
+    form.submit();
+    form.reset();
+  }
+  return false;
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});

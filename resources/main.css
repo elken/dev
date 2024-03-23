@@ -5,6 +5,7 @@
 @layer base {
   html {
     font-size: 18px;
+    -webkit-font-smoothing: antialiased;
     scroll-behaviour: smooth;
   }
 
@@ -162,6 +163,18 @@
   a:hover {
     color: #191c25 !important;
     background: #81a1c1;
+  }
+
+  .active-box {
+    @apply !bg-nord-15;
+  }
+
+  .active-box a {
+    @apply !text-nord-4;
+  }
+
+  .active-link a {
+    @apply !text-nord-15;
   }
 
   article img:not(.no-spotlight) {
