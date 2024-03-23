@@ -69,7 +69,7 @@
                :alt "Your Portrait"
                :class "rounded-3xl shadow-lg"}]]]]]]
    
-   [:section#portfolio {:class "min-h-screen flex items-center justify-center bg-nord-4 dark:bg-nord-3"}
+   [:section#portfolio {:class "min-h-screen flex items-center justify-center bg-nord-4 dark:bg-nord-3 p-4"}
     [:div {:class "text-center mt-4"}
      [:h2 {:class "text-4xl font-bold mb-6"} "Previous work"]
      [:p.mb-4
@@ -83,26 +83,32 @@
                                        "GitHub"]] " for more of my open-source contributions."]
      [:div.inline-grid.gap-4
       {:class "grid-cols-[auto_auto_auto]"}
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/dashboard-1.png"
-                                           :alt "My first production app; called 'The Dashboard'. ReactJS & C#"
-                                           :data-description "This application encompassed all the useful data for the company, and was designed to be displayed on TVs across the business; hence the ugly 'buckets'. Over time it grew more and more complex as new pages were requested, but it was very stable and has been running without development since I worked on it."}]
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/veritas-1.png"
-                                           :alt "Veritas; an internal issue tracking system. Blazor & C#"
-                                           :data-description "Due to the nature of the business, this was also built to be a live application, updating as new issues are raised and new titles enter the system. The Submit Issue button on the bottom right was used to garner user feedback as this was an alpha product."}]
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/veritas-2.png"
-                                           :alt "Veritas Issue Page. Blazor & C#"
-                                           :data-description "Again being an alpha product; the UX leaves a bit to be desired. Users are able to comment on the issues RE: status changes; and on the bottom left there's a collapsible audit log of every change the issue underwent, including who made it and when."}]
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/veritas-3.png"
-                                           :alt "Veritas Edit Issue. Blazor & C#"
-                                           :data-description "Because these issues are intended to be updated live by anyone, a locking mechanism had to be implemented whenever someone tries to edit. In this state, nobody else is able to edit anything; however users with Admin access can forcibly unlock the issue if it were to get stuck. It also features a 'Job Lookup' component on the left which pulled data from various internal systems to make data input as simple as possible."}]
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/bk.png"
-                                           :alt "Bank of Kigali app. Flutter"
-                                           :data-description "I spent many months working as a core contributor to this app."}]
-      [:img.spotlight.cursor-pointer.h-48 {:src "/images/portfolio/excel_dashboard.png"
-                                           :alt "Sand Tracking Dashboard. ClojureScript & Clojure"
-                                           :data-description "Another live-updating dashboard, this time with a much nicer UX."}]]]]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/dashboard-1.png"
+        :alt "My first production app; called 'The Dashboard'. ReactJS & C#"
+        :data-description "This application encompassed all the useful data for the company, and was designed to be displayed on TVs across the business; hence the ugly 'buckets'. Over time it grew more and more complex as new pages were requested, but it was very stable and has been running without development since I worked on it."}]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/veritas-1.png"
+        :alt "Veritas; an internal issue tracking system. Blazor & C#"
+        :data-description "Due to the nature of the business, this was also built to be a live application, updating as new issues are raised and new titles enter the system. The Submit Issue button on the bottom right was used to garner user feedback as this was an alpha product."}]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/veritas-2.png"
+        :alt "Veritas Issue Page. Blazor & C#"
+        :data-description "Again being an alpha product; the UX leaves a bit to be desired. Users are able to comment on the issues RE: status changes; and on the bottom left there's a collapsible audit log of every change the issue underwent, including who made it and when."}]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/veritas-3.png"
+        :alt "Veritas Edit Issue. Blazor & C#"
+        :data-description "Because these issues are intended to be updated live by anyone, a locking mechanism had to be implemented whenever someone tries to edit. In this state, nobody else is able to edit anything; however users with Admin access can forcibly unlock the issue if it were to get stuck. It also features a 'Job Lookup' component on the left which pulled data from various internal systems to make data input as simple as possible."}]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/bk.png"
+        :alt "Bank of Kigali app. Flutter"
+        :data-description "I spent many months working as a core contributor to this app."}]
+      [:img.spotlight.cursor-pointer.max-h-48.aspect-video
+       {:src "/images/portfolio/excel_dashboard.png"
+        :alt "Sand Tracking Dashboard. ClojureScript & Clojure"
+        :data-description "Another live-updating dashboard, this time with a much nicer UX."}]]]]
 
-   [:section#publications.min-h-screen.flex.items-center.justify-center
+   [:section#publications.min-h-screen.flex.items-center.justify-center.p-4
     [:div.text-center
      [:h2.text-4xl.font-bold.mb-6 "Publications"]
      [:p.mt-4
@@ -131,7 +137,7 @@
          :summary "Building data visualisations in Clojure notebooks"
          :post "https://www.juxt.pro/blog/advanced-clerk-usage/"})]]]]
 
-   [:section#contact {:class "h-[94dvh] flex items-center justify-center bg-nord-4 dark:bg-nord-3"}
+   [:section#contact {:class "h-[94dvh] flex items-center justify-center bg-nord-4 dark:bg-nord-3 p-4"}
     [:div {:class "text-center"}
      [:h2 {:class "text-4xl text-nord4 font-bold mb-6"} "Get in touch!"]
      [:p {:class "text-nord3 mb-4"}
