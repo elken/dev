@@ -131,7 +131,7 @@
          :summary "Building data visualisations in Clojure notebooks"
          :post "https://www.juxt.pro/blog/advanced-clerk-usage/"})]]]]
 
-   [:section#contact {:class "min-h-screen flex items-center justify-center bg-nord-4 dark:bg-nord-3"}
+   [:section#contact {:class "h-[94dvh] flex items-center justify-center bg-nord-4 dark:bg-nord-3"}
     [:div {:class "text-center"}
      [:h2 {:class "text-4xl text-nord4 font-bold mb-6"} "Get in touch!"]
      [:p {:class "text-nord3 mb-4"}
