@@ -43,14 +43,6 @@
     [:li
      [:a {:href "#contact"} "Contact"]]]
 
-   [:ul#mobile-scroll-nav.fixed.top-14.left-0.md:hidden.flex.flex-row.z-50.w-full.bg-nord-5.dark:bg-nord-0
-    [:li.flex-1.text-center
-     [:a.hover:bg-transparent.hover:!text-nord-2.hover:dark:!text-nord-4 {:href "#portfolio"} "Portfolio"]]
-    [:li.flex-1.text-center
-     [:a.hover:bg-transparent.hover:!text-nord-2.hover:dark:!text-nord-4 {:href "#publications"} "Publications"]]
-    [:li.flex-1.text-center
-     [:a.hover:bg-transparent.hover:!text-nord-2.hover:dark:!text-nord-4 {:href "#contact"} "Contact"]]]
-
    [:section#top.min-h-screen.flex.items-center.justify-center
     [:div {:class "flex flex-col md:flex-row md:items-center md:justify-between w-2/3"}
      [:div
@@ -173,7 +165,4 @@
                   :class "md:w-32 bg-nord-9 hover:bg-nord-9/70 text-white font-bold py-3 px-6 rounded-lg mt-3 transition ease-in-out duration-300"}
          "Submit"]]]]]]
    [:script {:src "https://rawcdn.githack.com/lcdsantos/menuspy/db2c761b6afca35af2e4696084a2d75437e4725b/dist/menuspy.min.js"}]
-   [:script "
- new MenuSpy(document.querySelector('#scroll-nav'), {activeClass: 'active-link'})
- new MenuSpy(document.querySelector('#mobile-scroll-nav'), {activeClass: 'active-box'})
-"]))
+   [:script " new MenuSpy(document.querySelector('#scroll-nav'), {activeClass: 'active-link'}) "]))

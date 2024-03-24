@@ -165,14 +165,6 @@
     background: #81a1c1;
   }
 
-  .active-box {
-    @apply !bg-nord-15;
-  }
-
-  .active-box a {
-    @apply !text-nord-4;
-  }
-
   .active-link a {
     @apply !text-nord-15;
   }
