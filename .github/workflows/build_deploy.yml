@@ -7,7 +7,6 @@ on:
       - src/**
     branches:
       - master
-      - feat/powerpack
 jobs:
   build-and-deploy:
     name: "Build Powerpack"
