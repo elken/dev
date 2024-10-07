@@ -3,7 +3,36 @@
  :deps {io.github.lispyclouds/bblgum {:git/sha "1d4de3d49b84f64d1b71930fa1161f8d2622a4d9"}
         org.clj-commons/pretty {:mvn/version "2.2.1"}}
  :tasks
- {:requires ([babashka.fs :as fs])
+ {:requires ([babashka.fs :as fs]
+             [clojure.string :as str])
+  -os {:task (let [os-name (str/lower-case (System/getProperty "os.name"))]
+               (cond
+                 (str/includes? os-name "win") "windows"
+                 (str/includes? os-name "mac") "macos"
+                 :else "linux"))}
+  -arch {:task (let [arch (str/lower-case (System/getProperty "os.arch"))]
+                 (cond
+                   (= arch "aarch64") "arm64"
+                   (str/starts-with? arch "arm") "armv7"
+                   :else "x64"))}
+  -download {:task (let [os (run '-os)
+                         arch (run '-arch)
+                         ext (when (= os "windows") ".exe")
+                         filename (str "tailwindcss-" os "-" arch ext)
+                         url (str "https://github.com/tailwindlabs/tailwindcss/releases/latest/download/" filename)
+                         target (str "tailwindcss" ext)]
+                     (when-not (fs/exists? target)
+                       (println "Downloading tailwind")
+                       (shell "curl" "-sLO" url)
+                       (when (not= os "windows")
+                         (println "Making executable...")
+                         (fs/set-posix-file-permissions filename "rwxr-xr-x"))
+
+                       (println "Renaming file...")
+                       (fs/move filename target {:replace-existing true})
+
+                       (println "Tailwind CSS has been downloaded and set up successfully!")))}
+
   post {:doc "Generate a new post using a wizard"
         :requires ([bb.new-post :as task])
         :task (task/write-post)}
@@ -11,7 +40,8 @@
                :task (run '-dev {:parallel true})}
   -dev        {:depends [dev:css]}
   dev:css    {:doc  "Runs front-end compilation"
-              :task (shell "yarn dev:css")}
+              :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --watch")
+              :depends [-download]}
   -clean (do
            (println "Removing target folder")
            (fs/delete-tree "target"))
@@ -19,7 +49,7 @@
            (println "Building site")
            (clojure "-X:build"))
   prod:css {:doc "Compile CSS for production"
-            :task (shell "yarn prod:css")}
+            :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --minify")}
   build {:doc "Run the steps needed to build the site"
          :task (do
                  (run '-clean)

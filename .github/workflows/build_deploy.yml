@@ -27,22 +27,6 @@ jobs:
           cli: "1.11.1.1403"
           bb: "latest"
 
-      - name: 🏗 Install deps
-        run: |
-          yarn
-
-      - name: 📦 Cache deps
-        uses: actions/cache@v3.3.1
-        with:
-          path: |
-            ~/.m2
-            ~/.gitlibs
-            ~/.deps.clj
-            node_modules
-          key: ${{ runner.os }}-dev-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-dev-
-
       - name: 🏗 Build Site
         run: bb build
 

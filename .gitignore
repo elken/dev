@@ -8,3 +8,5 @@ resources/public/styles.css
 /resources/chromedriver
 dev/user.clj
 /resources/public/screenshots/
+
+/tailwindcss-*
