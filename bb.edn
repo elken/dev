@@ -49,7 +49,8 @@
            (println "Building site")
            (clojure "-X:build"))
   prod:css {:doc "Compile CSS for production"
-            :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --minify")}
+            :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --minify")
+            :depends [-download]}
   build {:doc "Run the steps needed to build the site"
          :task (do
                  (run '-clean)

@@ -9,4 +9,4 @@ resources/public/styles.css
 dev/user.clj
 /resources/public/screenshots/
 
-/tailwindcss-*
+/tailwindcss*

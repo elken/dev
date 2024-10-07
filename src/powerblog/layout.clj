@@ -63,7 +63,7 @@
     " and "
     [:a.underline.hover:text-sky-400 {:href "https://tailwindcss.com"} "TailwindCSS"]
     ". Source code available "
-    [:a.underline.hover:text-sky-400 {:href "https://github.com/elken/dev"} "here"]]])
+    [:a.underline.hover:text-sky-400 {:href "https://github.com/elken/dev"} "here!"]]])
 
 (defn layout [{:keys [title padding?] :as context
                :or {padding? true}}
