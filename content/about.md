@@ -2,6 +2,9 @@
 :page/locale :en
 :about/github elken
 :about/gitlab elken
+:open-graph/title lkn's ramblings
+:open-graph/description Just a guy on the internet
+:open-graph/image /images/lkn.png
 :about/linkedin ellis-kenyo-38788891
 :page/body
 
