@@ -19,7 +19,7 @@
    :page/body])
 
 (defn post-path [slug]
-  (fs/path "content" "blog-posts" (format "%s.md" slug)))
+  (fs/path "content" "posts" (format "%s.md" slug)))
 
 (defn post-exists?
   "Given a post slug, verify if it exists in the filesystem."

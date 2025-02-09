@@ -27,7 +27,7 @@
   (dev/stop)
   (dev/reset)
 
-  (->> (d/entity db [:page/uri "/blog-posts/first-post/"])
+  (->> (d/entity db [:page/uri "/posts/first-post/"])
        ;; :page/body
        (into {})
        ;; (.split "\\W+")
@@ -37,7 +37,7 @@
 
   (->> (d/q '[:find ?tx-time
               :where
-              [(= :page/uri "/blog-posts/first-post/")]
+              [(= :page/uri "/posts/first-post/")]
               [?tx :db/txInstant ?tx-time]]
             db)
        sort
@@ -46,6 +46,4 @@
   (d/q '[:find [?tag ...]
          :where
          [_ :blog-post/tags ?tag]]
-       db)
-
-  )
+       db))
