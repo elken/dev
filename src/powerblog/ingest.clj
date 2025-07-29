@@ -73,7 +73,10 @@
 (defn- chrome-installed?
   "Checks if Google Chrome is installed."
   []
-  (let [traditional (:exit (sh/sh "which" "google-chrome"))
+  (let [os-name (str/lower-case (System/getProperty "os.name"))
+        traditional (if (str/includes? os-name "mac")
+                      (if (.exists (io/file "/Applications/Google Chrome.app")) 0 1)
+                      (:exit (sh/sh "which" "google-chrome")))
         chromedriver (:exit (sh/sh "which" "chromedriver"))]
     (= traditional chromedriver 0)))
 
