@@ -15,19 +15,20 @@
    [com.vladsch.flexmark.parser Parser]
    [com.vladsch.flexmark.util.data MutableDataSet]))
 
-(def flexmark-opts (-> (MutableDataSet.)
-                       (.set AttributesExtension/ASSIGN_TEXT_ATTRIBUTES true)
-                       (.set AttributesExtension/FENCED_CODE_INFO_ATTRIBUTES true)
-                       (.set Parser/EXTENSIONS [(AutolinkExtension/create)
-                                                (AnchorLinkExtension/create)
-                                                (AttributesExtension/create)
-                                                (FootnoteExtension/create)
-                                                (GitLabExtension/create)
-                                                (StrikethroughSubscriptExtension/create)
-                                                (TablesExtension/create)
-                                                (TypographicExtension/create)])))
+(defn make-flexmark-opts [_options]
+  (-> (MutableDataSet.)
+      (.set AttributesExtension/ASSIGN_TEXT_ATTRIBUTES true)
+      (.set AttributesExtension/FENCED_CODE_INFO_ATTRIBUTES true)
+      (.set Parser/EXTENSIONS [(AutolinkExtension/create)
+                               (AnchorLinkExtension/create)
+                               (AttributesExtension/create)
+                               (FootnoteExtension/create)
+                               (GitLabExtension/create)
+                               (StrikethroughSubscriptExtension/create)
+                               (TablesExtension/create)
+                               (TypographicExtension/create)])))
 
-(alter-var-root #'md/flexmark-opts (constantly flexmark-opts))
+(alter-var-root #'md/make-flexmark-opts (constantly make-flexmark-opts))
 
 (def config
   {:site/title "lkn's ramblings"
@@ -69,7 +70,7 @@
                     :disk-cache? true
                     :transformations
                     {:header
-                     {:transformations [[:fit {:width 1920 :height 200 :scale-up? true}]]}
+                     {:transformations [[:resize {:width 1920 :scale-up? true}]]}
                      :logo
                      {:transformations [[:fit {:width 64 :height 64}]]
                       :width 64}

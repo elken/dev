@@ -2,6 +2,7 @@
   (:require
    [phosphor.icons :as icons]
    [powerblog.components :as components]
+   [powerpack.hiccup :as ph]
    [powerblog.layout :as layout]
    [powerblog.util :as util]
    [powerpack.markdown :as md]))
@@ -32,7 +33,7 @@
          {:title
           (str "Last edited on "
                (util/format-date edited-date))}
-         (icons/render :phosphor.regular/pen {:size 20
+         (icons/render :phosphor.regular/pen {:size "20px"
                                               :style {:display "block"}})])]
      [:span.cursor-pointer.decoration-dotted.underline
       {:title (str (count-words page-body) " words read at an average of 250 words per minute!")}
@@ -46,12 +47,12 @@
      (merge context {:title title})
      page
      [:article.prose.dark:prose-invert.mx-auto.prose-slate.lg:prose-lg.prose-a:no-underline
-      [:h1.text-nord-9.dark:text-nord-8 (md/md-to-html title)]
+      [:h1.text-nord-9.dark:text-nord-8 (md/render-html title)]
       (when description
-        [:h4 (md/md-to-html description)])
+        [:h4 (md/render-html description)])
       (page-header page)
-      (md/md-to-html preview)
-      (md/md-to-html body)
+      (md/render-html preview)
+      (md/render-html body)
       [:div.flex.gap-3
        (for [tag (:blog-post/tags page)]
          (components/tag {:body (name tag)

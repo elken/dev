@@ -16,8 +16,8 @@
        (sort-by :blog-post/created-at #(compare %2 %1))))
 
 (defn article-page [{:page/keys [uri title]
-                      :blog-post/keys [header-image created-at tags preview]
-                      :open-graph/keys [description]}]
+                     :blog-post/keys [header-image created-at tags preview]
+                     :open-graph/keys [description]}]
   [:article.shadow.rounded.dark:bg-nord-2.my-3
    (when header-image
      [:img.rounded-t.h-32.w-full.mb-0.object-cover.object-center {:src header-image}])
@@ -28,9 +28,9 @@
     (when description
       [:h4.text-lg.font-semibold
        (md/render-html description)])
-    [:span.flex.flex-col.sm:flex-row.gap-3.items-center.mb-3
-     [:span.select-none
-      (icons/render :phosphor.fill/calendar {:size 20
+    [:span.flex.flex-col.sm:flex-row.gap-3.items-center.justify-between.mb-3
+     [:span.select-none.flex.items-center
+      (icons/render :phosphor.fill/calendar {:size "20px"
                                              :class "mr-2"})
       (util/format-date created-at)]
      [:div.flex.gap-3
@@ -44,7 +44,6 @@
     (layout/layout
      (merge context {:title "Posts"})
      page
-     [:h1 [:i18n ::page-title]]
      [:div.prose.dark:prose-invert.prose-nord-3.prose-a:no-underline.prose-headings:my-1.prose-p:mt-1.mx-auto
       (md/render-html (:page/body page))
       (for [blog-post blog-posts]
