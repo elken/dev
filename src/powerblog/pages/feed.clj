@@ -3,7 +3,8 @@
   (:require
    [clojure.data.xml :as xml]
    [powerblog.pages.blog-listing :as blog-listing]
-   [powerpack.markdown :as md])
+   [powerpack.markdown :as md]
+   [powerpack.hiccup :as ph])
   (:import
    java.time.format.DateTimeFormatter))
 
@@ -44,7 +45,7 @@
              [::atom/title title]
              [::atom/updated (rfc-3339 (or edited-at created-at))]
              [::atom/content {:type "html"}
-              [:-cdata (md/render-html (str preview body))]]])])
+              [:-cdata  (md/md-to-html (str preview body))]]])])
         xml/indent-str)))
 
 (defn- clojure-post? [{:blog-post/keys [tags]}]
@@ -60,24 +61,3 @@
         :app/db
         blog-listing/get-blog-posts
         (filter clojure-post?))))
-
-;; (defn- spit-feeds [{:keys [out-dir modified-posts posts] :as opts}]
-;;   (let [feed-file (fs/file out-dir "atom.xml")
-;;         clojure-feed-file (fs/file out-dir "planetclojure.xml")
-;;         all-posts (lib/sort-posts (vals posts))
-;;         clojure-posts (->> (vals posts)
-;;                            (filter clojure-post?)
-;;                            lib/sort-posts)
-;;         clojure-posts-modified? (->> modified-posts
-;;                                      (map posts)
-;;                                      (some clojure-post?))]
-;;     (if (and (not clojure-posts-modified?) (fs/exists? clojure-feed-file))
-;;       (println "No Clojure posts modified; skipping Clojure feed")
-;;       (do
-;;         (println "Writing Clojure feed" (str clojure-feed-file))
-;;         (spit clojure-feed-file (atom-feed opts clojure-posts))))
-;;     (if (and (empty? modified-posts) (fs/exists? feed-file))
-;;       (println "No posts modified; skipping main feed")
-;;       (do
-;;         (println "Writing feed" (str feed-file))
-;;         (spit feed-file (atom-feed opts all-posts))))))
