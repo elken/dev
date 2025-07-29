@@ -3,7 +3,7 @@
         no.cjohansen/powerpack {:mvn/version "2025.06.16"}
         org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}
         org.clojure/data.json {:mvn/version "2.5.0"}
-        no.cjohansen/phosphor-clj {:mvn/version "2023.07.07"}
+        no.cjohansen/phosphor-clj {:mvn/version "2025.04.16"}
         etaoin/etaoin {:mvn/version "1.0.40"}}
  :aliases {:dev {:extra-paths ["dev"]
                  :extra-deps {djblue/portal {:mvn/version "0.51.0"}}}
