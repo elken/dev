@@ -37,13 +37,17 @@
           [::atom/author
            [::atom/name author]]
           (for [{:page/keys [body uri title]
-                 :blog-post/keys [preview created-at edited-at]} posts
+                 :blog-post/keys [preview created-at edited-at tags]} posts
                 :let [link (str base-url uri)]]
             [::atom/entry
              [::atom/id link]
              [::atom/link {:href link}]
              [::atom/title title]
+             [::atom/summary preview]
+             [::atom/published (rfc-3339 created-at)]
              [::atom/updated (rfc-3339 (or edited-at created-at))]
+             (for [tag tags]
+               [::atom/category {:term (name tag)}])
              [::atom/content {:type "html"}
               [:-cdata  (md/md-to-html (str preview body))]]])])
         xml/indent-str)))
