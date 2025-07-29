@@ -32,7 +32,11 @@
   (let [resource-path (get-in powerpack-app [:imagine/config :resource-path])
         resource-dir (first (:powerpack/resource-dirs powerpack-app))
         db (d/db (:datomic/conn powerpack-app))
-        driver (etaoin/chrome {:headless true})]
+        driver (etaoin/chrome {:headless true})
+        posts (d/q '[:find [?e ...]
+                     :where
+                     [?e :blog-post/author]]
+                   db)]
 
     (when-let [url (:site/base-url powerpack-app)]
       (let [{:keys [width height]} (etaoin/get-window-size driver)]
@@ -46,10 +50,7 @@
             (etaoin/set-window-size driver width height)))))
 
     (doall
-     (for [post (d/q '[:find [?e]
-                       :where
-                       [?e :blog-post/author]]
-                     db)]
+     (for [post posts]
        (let [post (d/entity db post)
              post-name (last (str/split (:page/uri post) #"/"))
              file-path (io/file resource-dir resource-path "opengraph" (str post-name ".png"))
