@@ -1,0 +1,92 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">
+    Function Calls Creating Unresolved Futures
+  </text>
+  
+  <!-- Time axis -->
+  <line x1="80" y1="60" x2="750" y2="60" stroke="#333" stroke-width="2"/>
+  <text x="415" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Time →</text>
+  
+  <!-- Time markers -->
+  <g stroke="#ccc" stroke-width="1" font-family="Arial, sans-serif" font-size="10" fill="#666">
+    <line x1="150" y1="55" x2="150" y2="450"/>
+    <text x="150" y="75" text-anchor="middle">T1</text>
+    
+    <line x1="250" y1="55" x2="250" y2="450"/>
+    <text x="250" y="75" text-anchor="middle">T2</text>
+    
+    <line x1="350" y1="55" x2="350" y2="450"/>
+    <text x="350" y="75" text-anchor="middle">T3</text>
+    
+    <line x1="450" y1="55" x2="450" y2="450"/>
+    <text x="450" y="75" text-anchor="middle">T4</text>
+    
+    <line x1="550" y1="55" x2="550" y2="450"/>
+    <text x="550" y="75" text-anchor="middle">T5</text>
+    
+    <line x1="650" y1="55" x2="650" y2="450"/>
+    <text x="650" y="75" text-anchor="middle">T6</text>
+  </g>
+  
+  <!-- Function call arrows -->
+  <g fill="#ff4444" stroke="#ff4444" stroke-width="2">
+    <polygon points="140,90 150,85 150,95" />
+    <text x="120" y="95" font-family="Arial, sans-serif" font-size="10" fill="#ff4444">call()</text>
+    
+    <polygon points="240,90 250,85 250,95" />
+    <text x="220" y="95" font-family="Arial, sans-serif" font-size="10" fill="#ff4444">call()</text>
+    
+    <polygon points="340,90 350,85 350,95" />
+    <text x="320" y="95" font-family="Arial, sans-serif" font-size="10" fill="#ff4444">call()</text>
+    
+    <polygon points="440,90 450,85 450,95" />
+    <text x="420" y="95" font-family="Arial, sans-serif" font-size="10" fill="#ff4444">call()</text>
+    
+    <polygon points="540,90 550,85 550,95" />
+    <text x="520" y="95" font-family="Arial, sans-serif" font-size="10" fill="#ff4444">call()</text>
+  </g>
+  
+  <!-- Future bars (representing pending futures) -->
+  <!-- Future 1: starts at T1, never resolves -->
+  <rect x="150" y="110" width="500" height="25" fill="#ff9999" stroke="#ff4444" stroke-width="1" opacity="0.8"/>
+  <text x="155" y="127" font-family="Arial, sans-serif" font-size="10" fill="#333">Future 1 (pending...)</text>
+  
+  <!-- Future 2: starts at T2, never resolves -->
+  <rect x="250" y="140" width="400" height="25" fill="#ff9999" stroke="#ff4444" stroke-width="1" opacity="0.8"/>
+  <text x="255" y="157" font-family="Arial, sans-serif" font-size="10" fill="#333">Future 2 (pending...)</text>
+  
+  <!-- Future 3: starts at T3, never resolves -->
+  <rect x="350" y="170" width="300" height="25" fill="#ff9999" stroke="#ff4444" stroke-width="1" opacity="0.8"/>
+  <text x="355" y="187" font-family="Arial, sans-serif" font-size="10" fill="#333">Future 3 (pending...)</text>
+  
+  <!-- Future 4: starts at T4, never resolves -->
+  <rect x="450" y="200" width="200" height="25" fill="#ff9999" stroke="#ff4444" stroke-width="1" opacity="0.8"/>
+  <text x="455" y="217" font-family="Arial, sans-serif" font-size="10" fill="#333">Future 4 (pending...)</text>
+  
+  <!-- Future 5: starts at T5, never resolves -->
+  <rect x="550" y="230" width="100" height="25" fill="#ff9999" stroke="#ff4444" stroke-width="1" opacity="0.8"/>
+  <text x="555" y="247" font-family="Arial, sans-serif" font-size="10" fill="#333">Future 5 (pending...)</text>
+  
+
+  
+  <!-- Problem indicator -->
+  <g transform="translate(400, 280)">
+    <circle cx="0" cy="0" r="8" fill="#ff3333"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">!</text>
+    <text x="15" y="5" font-family="Arial, sans-serif" font-size="12" fill="#ff3333" font-weight="bold">Problem: Futures never resolve</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 320)">
+    <rect x="0" y="0" width="15" height="10" fill="#ff9999" stroke="#ff4444" stroke-width="1"/>
+    <text x="20" y="9" font-family="Arial, sans-serif" font-size="10" fill="#333">Pending Future</text>
+    
+    <polygon points="130,5 140,0 140,10" fill="#ff4444"/>
+    <text x="145" y="9" font-family="Arial, sans-serif" font-size="10" fill="#333">Function Call</text>
+  </g>
+
+</svg>
