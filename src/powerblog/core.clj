@@ -15,7 +15,7 @@
    [com.vladsch.flexmark.parser Parser]
    [com.vladsch.flexmark.util.data MutableDataSet]))
 
-(defn make-flexmark-opts [_options]
+(def flexmark-opts
   (-> (MutableDataSet.)
       (.set AttributesExtension/ASSIGN_TEXT_ATTRIBUTES true)
       (.set AttributesExtension/FENCED_CODE_INFO_ATTRIBUTES true)
@@ -28,7 +28,7 @@
                                (TablesExtension/create)
                                (TypographicExtension/create)])))
 
-(alter-var-root #'md/make-flexmark-opts (constantly make-flexmark-opts))
+(alter-var-root #'md/flexmark-opts (constantly flexmark-opts))
 
 (def config
   {:site/title "lkn's ramblings"
