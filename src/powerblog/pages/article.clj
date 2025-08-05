@@ -20,6 +20,11 @@
       Math/ceil
       int))
 
+(defn- preview-box [preview]
+  [:div {:class "my-6 border-l-4 border-nord-8 bg-nord-5 dark:bg-nord-2 p-4"}
+   [:blockquote {:class "text-nord-0 dark:text-nord-4 italic text-lg leading-relaxed border-none pl-0"}
+    (md/render-html preview)]])
+
 (defn- page-header [page]
   (let [page-body (:page/body page)
         author (:blog-post/author page)
@@ -51,7 +56,7 @@
       (when description
         [:h4 (md/render-html description)])
       (page-header page)
-      (md/render-html preview)
+      (preview-box preview)
       (md/render-html body)
       [:div.flex.gap-3
        (for [tag (:blog-post/tags page)]
