@@ -38,7 +38,10 @@
         :task (task/write-post)}
   dev         {:doc  "Run tasks for dev"
                :task (run '-dev {:parallel true})}
-  -dev        {:depends [dev:css]}
+  -dev        {:depends [dev:css dev:server]}
+  dev:server   {:doc "Start development server"
+                :task (clojure "-M:dev" "dev/user.clj")}
+
   dev:css    {:doc  "Runs front-end compilation"
               :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --watch")
               :depends [-download]}
