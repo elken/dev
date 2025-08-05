@@ -9,6 +9,10 @@
     scroll-behaviour: smooth;
   }
 
+  [id^="fnref"] {
+      scroll-margin-top: 50vh;
+  }
+
   /* Burger menu */
   input#nav-toggle:checked ~ label#show-button {
     display: none;
