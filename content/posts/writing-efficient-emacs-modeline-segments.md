@@ -96,6 +96,9 @@ For simplicity, we'll just worry about the one-line output version.
                 mode-line-frame-identification mode-line-buffer-identification "   "
                 mode-line-position (vc-mode vc-mode) "  " mode-line-modes
                 mode-line-misc-info my/wttr-status mode-line-end-spaces))
+
+;; If you have issues with the modeline now showing the new status
+(kill-local-variable 'mode-line-format)
 ```
 
 
@@ -123,9 +126,9 @@ synchronously to a service and blocking every time.
 For some things, this can be ideal for example if you need the result
 and you won't do any other operations in the meantime. But unless you
 want to use Emacs as an interface to `wttr.in`, you'll probably want
-to use it for other things too. So thanks to `emacs-async`, we can
-shift the burden of this processing to a thread and shift the current
-model of how we handle this.
+to use it for other things too. So thanks to the async nature of
+`url-retrieve`, we can shift the burden of this processing to a thread
+and shift the current model of how we handle this.
 
 Let's get into the weeds a bit here
 
@@ -177,7 +180,7 @@ approach). The "publisher" (weather service) does its work on its own
 schedule, and the "subscriber" (your modeline) just displays whatever
 the latest data is.
 
-Thanks to `emacs-async`, we can perform a crude
+Thanks to the asynchronous bits of `url-retrieve`, we can perform a crude
 implementation of this[^1].
 
 Here's how it works in practice: we'll set up a background timer that
@@ -189,25 +192,31 @@ Let's build it.
 
 ```emacs-lisp
 ;; Define this first to appease the byte-compiler gods
-(setq my/wttr-status-text "")
+(setq-default my/wttr-status-text "")
+(put 'my/wttr-status-text 'risky-local-variable t)
 
+;; Define an async callback with url-retrieve
 (defun my/wttr-update ()
-  "Update the current wttr status on a thread."
+  "Update the current wttr status asynchronously."
   (message "Updating wttr.in")
-  (async-start
-   `(lambda ()
-      (with-current-buffer (url-retrieve-synchronously "https://wttr.in/London?format=%l:%20%C+%t&q")
-        (set-buffer-multibyte t)
-        (goto-char (point-min))
-        (re-search-forward "^$" nil 'move)
-        (forward-char 1)
-        (string-trim-right
-         (decode-coding-string
-          (buffer-substring-no-properties (point) (point-max))
-          'utf-8))))
-   (lambda (result)
-     (setq my/wttr-status-text result)
-     (force-mode-line-update))))
+  (let ((url-show-status nil))
+    (url-retrieve "https://wttr.in/London?format=%l:%20%C+%t&q"
+                  (lambda (status)
+                    (if (plist-get status :error)
+                        (message "Failed to fetch weather: %s" (plist-get status :error))
+                      (progn
+                        (set-buffer-multibyte t)
+                        (goto-char (point-min))
+                        (re-search-forward "^$" nil 'move)
+                        (forward-char 1)
+                        (setq my/wttr-status-text
+                              (string-trim-right
+                               (decode-coding-string
+                                (buffer-substring-no-properties (point) (point-max))
+                                'utf-8)))
+                        (force-mode-line-update)
+                        (message "Weather updated: %s" my/wttr-status-text)))
+                    (kill-buffer)))))
 
 ;; Define a global timer we can start/stop
 (defvar my/wttr--timer nil)
@@ -232,19 +241,26 @@ Let's build it.
                 mode-line-frame-identification mode-line-buffer-identification "   "
                 mode-line-position (vc-mode vc-mode) "  " mode-line-modes
                 mode-line-misc-info my/wttr-status-text mode-line-end-spaces))
+
+;; If you have issues with the modeline now showing the new status
+(kill-local-variable 'mode-line-format)
 ```
 
 _Much_ nicer! I've added an annoying "Updating" message so you can see
 how often it's really updating (spoiler alert: often) and yet, no
 impact on the editor!
 
-`emacs-async` works by running another, very light instance of Emacs
-in another thread and captures the result, passing it to a lambda to
-process. We simply just set the status text variable and update the
-modeline to ensure that its always up to date.
+`url-retrieve` runs the request asynchronously and upon getting the
+result, will run the specified callback on the buffer. The buffer we
+get back has the entire response including HTTP headers, which is why
+we have to skip to the first blank line to get the response. Here all
+our callback does is simply set the value, trigger a modeline update
+to ensure that it is always up to date then print another message to
+say it's done (this is purely for our demo purposes).
 
 We supplement this with a simple timer to call our update class every
 5 seconds and an easy way to disable the timer on the fly.
+
 # Where to go from here
 
 This pattern—background updates with variable binding—works for any external
@@ -255,6 +271,11 @@ monitoring, you name it.
 - I use `doom-modeline` myself, which has a nice API for defining segments: https://github.com/seagle0128/doom-modeline
 - For split-style modelines, check out `mode-line-format-right-align`
 - Here's a real-world example using this pattern: https://github.com/elken/doom-modeline-now-playing (you can find the old implementation [here](https://github.com/elken/doom-modeline-now-playing/blob/1532f324f98a234aa14e12ebdfd17cebba978d6a/doom-modeline-now-playing.el#L110-L129))
+- For more complex needs, there is
+  [`emacs-async`](https://github.com/jwiegley/emacs-async) which spins
+  up an instance of Emacs that can use around 60-100MB of RAM, so this
+  isn't advised for very simple operations like this that have
+  alternatives[^2]
 
 ## Further Reading
 - For more comprehensive modeline customization, see [Prot's excellent tutorial](https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/)
@@ -265,3 +286,5 @@ and keep your modeline fast by just formatting pre-computed data.
 If anyone finds any other useful materials, please do leave them in the comments, and have a great day!
 
 [^1]: Crude in the interest of time/code here. We could absolutely build something to implement this but it's out of scope of this post.
+
+[^2]: Thanks to [`@karthink`](https://karthinks.com/) for this
