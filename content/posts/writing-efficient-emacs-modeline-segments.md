@@ -272,7 +272,7 @@ monitoring, you name it.
 - For split-style modelines, check out `mode-line-format-right-align`
 - Here's a real-world example using this pattern: https://github.com/elken/doom-modeline-now-playing (you can find the old implementation [here](https://github.com/elken/doom-modeline-now-playing/blob/1532f324f98a234aa14e12ebdfd17cebba978d6a/doom-modeline-now-playing.el#L110-L129))
 - For more complex needs, there is
-  [`emacs-async`](https://github.com/jwiegley/emacs-async) which spins
+  [emacs-async](https://github.com/jwiegley/emacs-async) which spins
   up an instance of Emacs that can use around 60-100MB of RAM, so this
   isn't advised for very simple operations like this that have
   alternatives[^2]
@@ -287,4 +287,4 @@ If anyone finds any other useful materials, please do leave them in the comments
 
 [^1]: Crude in the interest of time/code here. We could absolutely build something to implement this but it's out of scope of this post.
 
-[^2]: Thanks to [`@karthink`](https://karthinks.com/) for this
+[^2]: Thanks to [@karthink](https://karthinks.com/) for this
