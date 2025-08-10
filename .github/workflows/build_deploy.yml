@@ -1,4 +1,4 @@
-name: Deploy to https://elken.dev
+name: Deploy to GitHub Pages
 on:
   push:
     paths:
@@ -10,8 +10,17 @@ on:
       - master
 jobs:
   build-and-deploy:
-    name: "Build Powerpack"
+    name: "Build & Deploy Powerpack"
     runs-on: ubuntu-latest
+    # Required for GitHub Pages deployment
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Allow only one concurrent deployment
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4.2.0
 
@@ -41,14 +50,14 @@ jobs:
       - name: Build Site
         run: bb build
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: unnecessary
+          path: './target/powerpack'
 
-      - name: Adding Known Hosts
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy with rsync
-        run: rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/powerpack/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/user-data/www/elken.dev/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
