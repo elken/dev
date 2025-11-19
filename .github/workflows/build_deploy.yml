@@ -45,7 +45,7 @@ jobs:
             ~/.deps.clj
           key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
           restore-keys: |
-            ${{ runner.os }}-clojure-
+            ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
 
       - name: Build Site
         run: bb build
