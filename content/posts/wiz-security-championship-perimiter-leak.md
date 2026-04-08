@@ -1,10 +1,10 @@
-:page/title Wiz Cloud Security Championship Problem 1: Perimeter Leak
+:page/title Perimeter Leak
 :blog-post/author {:person/id :lkn}
 :blog-post/created-at 2026-03-23
 :blog-post/tags [:wiz :security :aws]
 :blog-post/header-image /header/images/wiz-security-championship-perimiter-leak/preview.png
 :open-graph/image /opengraph/wiz-security-championship-perimiter-leak.png
-:open-graph/description A lesson in cloud configuration
+:open-graph/description A lesson in AWS cloud configuration
 :blog-post/preview
 My writeup for Problem 1 of the Wiz Cloud Security Championship
 :page/body
