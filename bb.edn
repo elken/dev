@@ -36,11 +36,15 @@
   post {:doc "Generate a new post using a wizard"
         :requires ([bb.new-post :as task])
         :task (task/write-post)}
+  -chromedriver {:doc "Sync mise's chromedriver to the locally installed Chrome"
+                 :requires ([bb.chromedriver :as chromedriver])
+                 :task (chromedriver/ensure-matching-chromedriver!)}
   dev         {:doc  "Run tasks for dev"
                :task (run '-dev {:parallel true})}
   -dev        {:depends [dev:css dev:server]}
   dev:server   {:doc "Start development server"
-                :task (clojure "-M:dev" "dev/user.clj")}
+                :task (clojure "-M:dev" "dev/user.clj")
+                :depends [-chromedriver]}
 
   dev:css    {:doc  "Runs front-end compilation"
               :task (shell "./tailwindcss -i ./resources/main.css -o ./resources/public/styles.css --watch")
