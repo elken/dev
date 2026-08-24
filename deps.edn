@@ -6,5 +6,6 @@
         no.cjohansen/phosphor-clj {:mvn/version "2025.04.16"}
         etaoin/etaoin {:mvn/version "1.0.40"}}
  :aliases {:dev {:extra-paths ["dev"]
-                 :extra-deps {djblue/portal {:mvn/version "0.51.0"}}}
+                 :extra-deps {djblue/portal {:mvn/version "0.51.0"}}
+                 :jvm-opts ["-Dapple.awt.UIElement=true"]}
            :build {:exec-fn powerblog.export/export!}}}
