@@ -100,11 +100,10 @@ _long_ deleted.
 
 ## Set the variables
 
-<div class="warning">
-As mentioned in the intro, Github likes to make random changes to the UI (anyone
-remember the useful homepage?) so any direct links or screenshots I use might
-not exist when you read this, so caveat emptor.
-</div>
+> [!WARNING]
+> As mentioned in the intro, Github likes to make random changes to the UI (anyone
+> remember the useful homepage?) so any direct links or screenshots I use might
+> not exist when you read this, so caveat emptor.
 
 Navigate to your repo's project settings and under security, look for Secrets and Variables then Actions.
 

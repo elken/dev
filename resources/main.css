@@ -127,40 +127,6 @@
         }
     }
 
-    /* Info box */
-    .info {
-        @apply relative bg-nord-10 text-nord-4 p-4 border-l-4 border-b-4 border-nord-9 rounded-md shadow-md pt-8;
-    }
-
-    .info p {
-        margin: 0;
-        display: inline;
-    }
-
-    .info::before {
-        @apply absolute transform -translate-y-1/2 -translate-x-full ml-2 text-lg text-nord-4 font-bold text-2xl;
-        content: "ℹ️ Information";
-        top: 18px;
-        left: 180px;
-    }
-
-    /* Warning box */
-    .warning {
-        @apply relative bg-nord-13 text-nord-0 p-4 border-l-4 border-b-4 border-nord-12 rounded-md shadow-md pt-8;
-    }
-
-    .warning p {
-        margin: 0;
-        display: inline;
-    }
-
-    .warning::before {
-        @apply absolute transform -translate-y-1/2 -translate-x-full ml-2 text-lg text-nord-0 font-bold text-2xl;
-        content: "⚠️ Warning";
-        top: 18px;
-        left: 140px;
-    }
-
     .image-title {
         @apply text-nord-6;
         mix-blend-mode: difference;
@@ -203,4 +169,81 @@
     .prose {
         max-width: 90ch !important;
     }
+}
+
+/*
+Admonition boxes (info/warning/note/tip/important/caution)
+see (tailwindlabs/tailwindcss#14583)
+*/
+.admonition {
+    @apply relative p-4 border-l-4 border-b-4 rounded-md shadow-md pt-8;
+}
+
+.admonition p {
+    margin: 0;
+}
+
+.admonition::before {
+    @apply absolute transform -translate-y-1/2 -translate-x-full ml-2 text-lg font-bold text-2xl;
+    top: 18px;
+}
+
+.info {
+    @apply bg-nord-10 text-nord-4 border-nord-9;
+}
+
+.info::before {
+    @apply text-nord-4;
+    content: "ℹ️ Information";
+    left: 180px;
+}
+
+.warning {
+    @apply bg-nord-13 text-nord-0 border-nord-12;
+}
+
+.warning::before {
+    @apply text-nord-0;
+    content: "⚠️ Warning";
+    left: 140px;
+}
+
+.note {
+    @apply bg-nord-10 text-nord-4 border-nord-9;
+}
+
+.note::before {
+    @apply text-nord-4;
+    content: "ℹ️ Note";
+    left: 110px;
+}
+
+.tip {
+    @apply bg-nord-14 text-nord-0 border-nord-7;
+}
+
+.tip::before {
+    @apply text-nord-0;
+    content: "💡 Tip";
+    left: 100px;
+}
+
+.important {
+    @apply bg-nord-15 text-nord-6 border-nord-11;
+}
+
+.important::before {
+    @apply text-nord-6;
+    content: "❗ Important";
+    left: 160px;
+}
+
+.caution {
+    @apply bg-nord-11 text-nord-6 border-nord-12;
+}
+
+.caution::before {
+    @apply text-nord-6;
+    content: "🛑 Caution";
+    left: 140px;
 }

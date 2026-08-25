@@ -1,5 +1,6 @@
 (ns powerblog.core
   (:require
+   [powerblog.gfm-alerts :refer [github-alerts-extension]]
    [powerblog.ingest :as ingest]
    [powerblog.pages :as pages]
    [powerpack.markdown :as md])
@@ -26,7 +27,8 @@
                                (GitLabExtension/create)
                                (StrikethroughSubscriptExtension/create)
                                (TablesExtension/create)
-                               (TypographicExtension/create)])))
+                               (TypographicExtension/create)
+                               (github-alerts-extension)])))
 
 (alter-var-root #'md/flexmark-opts (constantly flexmark-opts))
 
