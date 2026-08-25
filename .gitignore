@@ -3,6 +3,7 @@
 .lsp/
 .nrepl-port
 target/powerpack
+resources/.opengraph-cache.edn
 resources/public/styles.css
 /resources/geckodriver
 /resources/chromedriver
